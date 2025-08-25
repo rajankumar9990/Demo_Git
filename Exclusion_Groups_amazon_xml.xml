@@ -1,0 +1,30 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="AmazonSuite">
+
+    <test name="Exclusion Groups Test">
+        <groups>
+            <run>
+                <!-- Include checkintest group -->
+                <include name="checkintest"/>
+                <!-- Exclude broken group -->
+                <exclude name="broken"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="com.selenium_testng.day28.Exclusion_Groups_amazon">
+                <methods>
+                    <!-- Explicitly include setup and teardown -->
+                    <include name="setup"/>
+                    <include name="close"/>
+                     <include name="testTitle"/>
+                    <include name="testSearch"/>
+                    <include name="testCart"/>
+                    <!-- Include all test methods -->
+                    <include name=".*"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>
