@@ -1,0 +1,39 @@
+package com.healthcare.stepdefinitions;
+
+import com.healthcare.pages.ServicesPage;
+import com.healthcare.utils.ConfigReader;
+import com.healthcare.utils.DriverFactory;
+import io.cucumber.java.en.*;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
+
+public class ServicesSteps {
+    private WebDriver driver = DriverFactory.getDriver();
+    private ServicesPage servicesPage = new ServicesPage();
+
+    @Given("user is on the home page")
+    public void user_is_on_the_home_page() {
+        driver.get(ConfigReader.getProperty("baseUrl"));  // baseUrl should be in config.properties
+    }
+
+    @When("user clicks on the Services menu")
+    public void user_clicks_on_the_services_menu() {
+        servicesPage.openServicesDropdown();
+    }
+
+    @Then("user should see the list of services")
+    public void user_should_see_the_list_of_services() {
+        List<WebElement> services = servicesPage.getAllServiceLinks();
+        for (WebElement service : services) {
+            System.out.println("Service: " + service.getText());
+        }
+    }
+
+    @And("user closes the browser after navigating")
+    public void user_closes_the_browser_after_navigating() throws InterruptedException {
+        Thread.sleep(2000);
+        driver.quit();
+    }
+}

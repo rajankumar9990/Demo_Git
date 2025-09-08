@@ -1,0 +1,65 @@
+package com.healthcare.utils;
+
+import org.openqa.selenium.WebDriver;
+import org.testng.ITestContext;
+import org.testng.ITestListener;
+import org.testng.ITestResult;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+
+public class TestListener implements ITestListener {
+
+    private static ExtentReports extent = ExtentManager.getReporter();
+    private static ThreadLocal<ExtentTest> testReport = new ThreadLocal<>();
+
+    @Override
+    public void onStart(ITestContext context) {
+        System.out.println("=== Test Suite Started ===");
+    }
+
+    @Override
+    public void onFinish(ITestContext context) {
+        System.out.println("=== Test Suite Finished ===");
+        extent.flush();  // Write the report to disk
+    }
+
+    @Override
+    public void onTestStart(ITestResult result) {
+        System.out.println("STARTING TEST: " + result.getName());
+        ExtentTest test = extent.createTest(result.getMethod().getMethodName());
+        testReport.set(test);
+    }
+
+    @Override
+    public void onTestSuccess(ITestResult result) {
+        System.out.println("PASSED: " + result.getName());
+        testReport.get().pass("Test passed");
+    }
+
+    @Override
+    public void onTestFailure(ITestResult result) {
+        System.out.println("FAILED: " + result.getName());
+
+        WebDriver driver = DriverFactory.getDriver();
+        if (driver != null) {
+            String screenshotPath = ScreenshotUtils.takeScreenshot(driver, result.getName());
+            try {
+                testReport.get().fail(result.getThrowable())
+                          .addScreenCaptureFromPath(screenshotPath);
+            } catch (Exception e) {
+                e.printStackTrace();
+                testReport.get().fail("Screenshot capture failed");
+            }
+        } else {
+            testReport.get().fail("Driver is null, could not take screenshot")
+                      .fail(result.getThrowable());
+        }
+    }
+
+    @Override
+    public void onTestSkipped(ITestResult result) {
+        System.out.println("SKIPPED: " + result.getName());
+        testReport.get().skip("Test skipped");
+    }
+}

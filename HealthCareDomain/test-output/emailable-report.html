@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "https://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="https://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<title>TestNG Report</title>
+<style type="text/css">table {margin-bottom:10px;border-collapse:collapse;empty-cells:show}th,td {border:1px solid #009;padding:.25em .5em}th {vertical-align:bottom}td {vertical-align:top}table a {font-weight:bold}.stripe td {background-color: #E6EBF9}.num {text-align:right}.passedodd td {background-color: #3F3}.passedeven td {background-color: #0A0}.skippedodd td {background-color: #DDD}.skippedeven td {background-color: #CCC}.failedodd td,.attn {background-color: #F33}.failedeven td,.stripe .attn {background-color: #D00}.stacktrace {white-space:pre;font-family:monospace}.totop {font-size:85%;text-align:center;border-bottom:2px solid #000}.invisible {display:none}</style>
+</head>
+<body>
+<table>
+<tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
+<tr><th colspan="8">Healthcare Automation Suite</th></tr>
+<tr><td><a href="#t0">Healthcare Tests</a></td><td class="num">5</td><td class="num">0</td><td class="num">0</td><td class="num attn">2</td><td class="num">228,984</td><td></td><td></td></tr>
+</table>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Healthcare Automation Suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Healthcare Tests &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">com.healthcare.tests.LoginTests</td><td><a href="#m0">verifyLogin</a></td><td rowspan="1">1757097548320</td><td rowspan="1">31604</td></tr><tr class="failedodd"><td rowspan="1">com.healthcare.tests.RegistrationTests</td><td><a href="#m1">verifyRegistration</a></td><td rowspan="1">1757097586715</td><td rowspan="1">8501</td></tr><tr><th colspan="4">Healthcare Tests &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">com.healthcare.tests.ContactUsTests</td><td><a href="#m2">verifyContactOptions</a></td><td rowspan="1">1757097604611</td><td rowspan="1">24792</td></tr><tr class="passedodd"><td rowspan="1">com.healthcare.tests.HealthyAgingFormTests</td><td><a href="#m3">testFormSubmission</a></td><td rowspan="1">1757097492423</td><td rowspan="1">20769</td></tr><tr class="passedeven"><td rowspan="1">com.healthcare.tests.HomeTests</td><td><a href="#m4">verifySearchNavigation</a></td><td rowspan="1">1757097406257</td><td rowspan="1">29542</td></tr><tr class="passedodd"><td rowspan="1">com.healthcare.tests.ProgramsTests</td><td><a href="#m5">verifyProgramsSequentiallyInSameTab</a></td><td rowspan="1">1757097453742</td><td rowspan="1">24044</td></tr><tr class="passedeven"><td rowspan="1">com.healthcare.tests.ServicesTests</td><td><a href="#m6">verifyServices</a></td><td rowspan="1">1757097518007</td><td rowspan="1">12668</td></tr></tbody>
+</table>
+<h2>Healthcare Tests</h2><h3 id="m0">com.healthcare.tests.LoginTests#verifyLogin</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element &lt;button type=&quot;submit&quot; class=&quot;woocommerce-button button woocommerce-form-login__submit&quot; name=&quot;login&quot; value=&quot;...&quot;&gt;Log in&lt;/button&gt; is not clickable at point (236, 585). Other element would receive the click: &lt;p class=&quot;form-row&quot;&gt;...&lt;/p&gt;
+  (Session info: MicrosoftEdge=139.0.3405.125)
+Build info: version: &apos;4.25.0&apos;, revision: &apos;8a8aea2337&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.12&apos;
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Command: [aab43927239130f9e3cbbd18a7c6de7f, clickElement {id=f.729D1AF1723DDEE426F13F6FB425CDB5.d.5AA637E6C080A68C73C64D17F1747D29.e.47}]
+Capabilities {acceptInsecureCerts: false, browserName: MicrosoftEdge, browserVersion: 139.0.3405.125, fedcm:accounts: true, ms:edgeOptions: {debuggerAddress: localhost:63434}, msedge: {msedgedriverVersion: 139.0.3405.102 (7dccc8fa00f..., userDataDir: C:\Users\91999\AppData\Loca...}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63434/devtoo..., se:cdpVersion: 139.0.3405.125, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[EdgeDriver: MicrosoftEdge on windows (aab43927239130f9e3cbbd18a7c6de7f)] -&gt; xpath: //*[@id=&quot;customer_login&quot;]/div[1]/form/p[3]/button]
+Session ID: aab43927239130f9e3cbbd18a7c6de7f
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:223)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:76)
+	at com.healthcare.pages.LoginPage.login(LoginPage.java:24)
+	at com.healthcare.tests.LoginTests.verifyLogin(LoginTests.java:29)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+... Removed 22 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m1">com.healthcare.tests.RegistrationTests#verifyRegistration</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;css selector&quot;,&quot;selector&quot;:&quot;#confirmPassword&quot;}
+  (Session info: MicrosoftEdge=139.0.3405.125)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: &apos;4.25.0&apos;, revision: &apos;8a8aea2337&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.12&apos;
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Command: [9d999a29acd470ad3082273cf53b603d, findElement {value=confirmPassword, using=id}]
+Capabilities {acceptInsecureCerts: false, browserName: MicrosoftEdge, browserVersion: 139.0.3405.125, fedcm:accounts: true, ms:edgeOptions: {debuggerAddress: localhost:62585}, msedge: {msedgedriverVersion: 139.0.3405.102 (7dccc8fa00f..., userDataDir: C:\Users\91999\AppData\Loca...}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:62585/devtoo..., se:cdpVersion: 139.0.3405.125, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 9d999a29acd470ad3082273cf53b603d
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+	at com.healthcare.pages.RegistrationPage.register(RegistrationPage.java:27)
+	at com.healthcare.tests.RegistrationTests.verifyRegistration(RegistrationTests.java:34)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+... Removed 22 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m2">com.healthcare.tests.ContactUsTests#verifyContactOptions</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m3">com.healthcare.tests.HealthyAgingFormTests#testFormSubmission</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m4">com.healthcare.tests.HomeTests#verifySearchNavigation</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m5">com.healthcare.tests.ProgramsTests#verifyProgramsSequentiallyInSameTab</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m6">com.healthcare.tests.ServicesTests#verifyServices</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+</body>
+</html>

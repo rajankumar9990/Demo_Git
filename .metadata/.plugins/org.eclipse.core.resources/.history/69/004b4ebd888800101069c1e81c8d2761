@@ -1,0 +1,87 @@
+package com.healthcare.pages;
+
+import com.healthcare.utils.DriverFactory;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+
+public class HealthyAgingFormPage {
+    private WebDriver driver;
+
+    // Locators
+    private By firstNameField   = By.name("first_name");
+    private By lastNameField    = By.name("last_name");
+    private By phoneField       = By.name("phone");
+    private By emailField       = By.name("email");
+
+    private By taiChiCheckbox   = By.xpath("//label[contains(text(),'Tai Chi for Arthritis')]/preceding-sibling::input");
+    private By livingHealthyCheckbox = By.xpath("//label[contains(text(),'Living Healthy')]/preceding-sibling::input");
+
+    private By countyEscambiaRadio = By.xpath("//label[contains(text(),'Escambia')]/preceding-sibling::input");
+    private By virtualRadio     = By.xpath("//label[contains(text(),'Virtual')]/preceding-sibling::input");
+
+    private By bestDescribedDropdown = By.name("best_described");
+    private By howHeardField    = By.name("how_heard");
+
+    private By notifyCheckbox   = By.xpath("//input[@type='checkbox' and @name='notify']");
+    private By submitButton     = By.xpath("//button[contains(text(),'Submit')]");
+
+    // Constructor
+    public HealthyAgingFormPage() {
+        this.driver = DriverFactory.getDriver();
+    }
+
+    // Actions
+    public void enterName(String first, String last) throws InterruptedException {
+        Thread.sleep(1000);
+        driver.findElement(firstNameField).sendKeys(first);
+        driver.findElement(lastNameField).sendKeys(last);
+    }
+
+    public void enterContact(String phone, String email) throws InterruptedException {
+        Thread.sleep(1000);
+        driver.findElement(phoneField).sendKeys(phone);
+        driver.findElement(emailField).sendKeys(email);
+    }
+
+    public void selectPrograms() throws InterruptedException {
+        Thread.sleep(1000);
+        driver.findElement(taiChiCheckbox).click();
+        driver.findElement(livingHealthyCheckbox).click();
+    }
+
+    public void selectCounty() throws InterruptedException {
+        Thread.sleep(1000);
+        driver.findElement(countyEscambiaRadio).click();
+    }
+
+    public void selectClassFormat() throws InterruptedException {
+        Thread.sleep(1000);
+        driver.findElement(virtualRadio).click();
+    }
+
+    public void selectDescription(String text) throws InterruptedException {
+        Thread.sleep(1000);
+        WebElement dropdown = driver.findElement(bestDescribedDropdown);
+        new Select(dropdown).selectByVisibleText(text);
+    }
+
+    public void enterHowHeard(String info) throws InterruptedException {
+        Thread.sleep(1000);
+        driver.findElement(howHeardField).sendKeys(info);
+    }
+
+    public void checkNotify() throws InterruptedException {
+        Thread.sleep(1000);
+        WebElement notify = driver.findElement(notifyCheckbox);
+        if (!notify.isSelected()) {
+            notify.click();
+        }
+    }
+
+    public void submitForm() throws InterruptedException {
+        Thread.sleep(2000); // wait before submit
+        driver.findElement(submitButton).click();
+    }
+}

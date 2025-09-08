@@ -1,0 +1,6 @@
+baseUrl=https://westfloridaahec.org/
+browser=chrome
+temeout=10
+reportPath=reports/extent/
+defaultUserEmail=testuser@example.com
+defaultUserPassword=Password123!

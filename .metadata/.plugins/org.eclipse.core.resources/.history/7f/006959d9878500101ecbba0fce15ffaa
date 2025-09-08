@@ -1,0 +1,46 @@
+package com.healthcare.pages;
+
+import com.healthcare.utils.DriverFactory;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class HomePage {
+    private WebDriver driver;
+
+    // Locators
+    private By navMenu = By.cssSelector("nav");
+    private By healthProgramsSection = By.xpath("//*[contains(text(),'Programs')]");
+    private By resourcesSection = By.xpath("//*[contains(text(),'Resources')]");
+    private By searchInput = By.name("s"); 
+    private By searchButton = By.cssSelector("button[type='submit']");
+
+    public HomePage() {
+        this.driver = DriverFactory.getDriver();  // direct, no BasePage
+    }
+
+    public void open(String url) {
+        driver.get(url);
+    }
+
+    public boolean isNavVisible() {
+        return driver.findElements(navMenu).size() > 0;
+    }
+
+    public boolean isProgramsVisible() {
+        return driver.findElements(healthProgramsSection).size() > 0;
+    }
+
+    public boolean isResourcesVisible() {
+        return driver.findElements(resourcesSection).size() > 0;
+    }
+
+    public void search(String keyword) {
+        driver.findElement(searchInput).clear();
+        driver.findElement(searchInput).sendKeys(keyword);
+        driver.findElement(searchButton).click();
+    }
+
+    public void clickProgramLink(String linkText) {
+        driver.findElement(By.linkText(linkText)).click();
+    }
+}

@@ -1,0 +1,9 @@
+@login
+Feature: User Login
+
+  Scenario: Verify user login with valid credentials
+    Given user is on login page
+    When user enters valid username and password
+    And clicks login button
+    Then user should be logged in successfully
+Then user closes the browser

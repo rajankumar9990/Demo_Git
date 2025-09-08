@@ -1,0 +1,29 @@
+package com.healthcare.tests;
+
+import com.healthcare.pages.HomePage;
+import com.healthcare.utils.ConfigReader;
+import com.healthcare.utils.DriverFactory;
+import org.testng.Assert;
+import org.testng.annotations.*;
+
+public class HomeTests {
+    HomePage home;
+
+    @BeforeMethod
+    public void setup() {
+        DriverFactory.initDriver(ConfigReader.get("browser"));
+        DriverFactory.getDriver().get(ConfigReader.get("baseUrl"));
+        home = new HomePage();
+    }
+
+    @Test
+    public void verifyNavigationAndSearch() {
+        home.search("tobacco");
+        Assert.assertTrue(DriverFactory.getDriver().getTitle().contains("Search"));
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        DriverFactory.quitDriver();
+    }
+}

@@ -1,0 +1,15 @@
+Feature: Healthy Aging Form
+
+  @healthyaging
+  Scenario: Submit Healthy Aging form successfully
+    Given user is on Healthy Aging form page
+    When user enters first name "XYZ" and last name "ABC"
+    And user enters phone "1234567890" and email "xyz@gmail.com"
+    And user selects programs
+    And user selects county
+    And user selects description "An"
+    And user enters how heard "Through a friend"
+    And user checks notify option
+    And user submits the form
+    Then form should be submitted successfully
+    And user closes the browser

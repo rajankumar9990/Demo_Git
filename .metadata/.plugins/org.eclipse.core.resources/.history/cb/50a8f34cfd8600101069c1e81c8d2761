@@ -1,0 +1,49 @@
+package com.healthcare.tests;
+
+import com.healthcare.pages.RegistrationPage;
+import com.healthcare.utils.ConfigReader;
+import com.healthcare.utils.DriverFactory;
+
+import java.util.List;
+
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.annotations.*;
+
+public class RegistrationTests {
+	private RegistrationPage registerPage;
+
+	@BeforeClass
+	public void beforeClass() {
+		ConfigReader.loadConfig();
+	}
+
+	@BeforeMethod
+	public void setup() {
+		DriverFactory.initDriver(ConfigReader.get("browser"));
+		DriverFactory.getDriver().get(ConfigReader.get("registerUrl"));
+		registerPage = new RegistrationPage();
+		// Print the page title after registration
+		String pageTitle = DriverFactory.getDriver().getTitle();
+		System.out.println("Page title : " + pageTitle);
+	}
+
+	@Test
+	public void verifyRegistration() {
+
+		String username = "testuser";
+		String email = "testuser@example.com";
+		String password = "Test@123";
+
+		registerPage.register(username, email, password);
+
+		Assert.assertTrue(registerPage.isRegistrationSuccessful(), "Registration should be successful");
+		System.out.println("Registration successful! User created.");
+	}
+
+	@AfterMethod
+	public void tearDown() throws Exception {
+		Thread.sleep(4000);
+		DriverFactory.quitDriver();
+	}
+}

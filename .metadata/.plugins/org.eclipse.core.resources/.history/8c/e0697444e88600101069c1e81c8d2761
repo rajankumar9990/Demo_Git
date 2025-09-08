@@ -1,0 +1,29 @@
+package com.healthcare.pages;
+
+import com.healthcare.utils.DriverFactory;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class LoginPage {
+    private WebDriver driver;
+
+    // Locators (adjust IDs/names as per your app)
+    private By usernameField = By.id("username");
+    private By passwordField = By.id("password");
+    private By loginButton   = By.xpath("//*[@id=\"customer_login\"]/div[1]/form/p[3]/button");
+    private By logoutButton  = By.id("logoutBtn");
+
+    public LoginPage() {
+        this.driver = DriverFactory.getDriver();
+    }
+
+    public void login(String username, String password) {
+        driver.findElement(usernameField).sendKeys(username);
+        driver.findElement(passwordField).sendKeys(password);
+        driver.findElement(loginButton).click();
+    }
+
+    public boolean isLogoutVisible() {
+        return driver.findElement(logoutButton).isDisplayed();
+    }
+}

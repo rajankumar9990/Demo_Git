@@ -1,0 +1,42 @@
+package com.healthcare.tests;
+
+import com.healthcare.pages.HomePage;
+import com.healthcare.utils.ConfigReader;
+import com.healthcare.utils.DriverFactory;
+import org.testng.Assert;
+import org.testng.annotations.*;
+
+public class HomeTests {
+    HomePage home;
+
+    @BeforeClass
+    public void beforeClass() {
+        // Load config only once before any test runs
+        ConfigReader.loadConfig();
+    }
+
+    @BeforeMethod
+    public void setup() {
+        // Initialize browser and navigate to base URL
+        DriverFactory.initDriver(ConfigReader.get("browser"));
+        DriverFactory.getDriver().get(ConfigReader.get("baseUrl"));
+        home = new HomePage();
+    }
+
+    @Test
+    public void verifyNavigationAndSearch() {
+        home.search("tobacco");
+
+        String pageSource = DriverFactory.getDriver().getPageSource().toLowerCase();
+        Assert.assertTrue(
+                pageSource.contains("tobacco"),
+                "Search results should contain the word 'tobacco'"
+        );
+    }
+
+
+    @AfterMethod
+    public void tearDown() {
+        DriverFactory.quitDriver();
+    }
+}

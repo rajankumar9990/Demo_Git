@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Healthcare Automation Suite" parallel="tests" thread-count="2">
+    <listeners>
+        <listener class-name="com.healthcare.utils.TestListener"/>
+    </listeners>
+
+    <test name="Healthcare Tests">
+        <classes>
+            <class name="com.healthcare.tests.HomeTests"/>
+            <class name="com.healthcare.tests.ProgramsTests"/>
+            <class name="com.healthcare.tests.ServicesTests"/>
+            <class name="com.healthcare.tests.LoginTests"/>
+			<class name="com.healthcare.tests.RegistrationTests"/>
+			<class name="com.healthcare.tests.ContactUsTests" />
+			
+            
+        </classes>
+    </test>
+</suite>

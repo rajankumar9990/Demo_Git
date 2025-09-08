@@ -1,0 +1,34 @@
+package com.healthcare.stepdefinitions;
+
+import com.healthcare.pages.LoginPage;
+import com.healthcare.utils.ConfigReader;
+import com.healthcare.utils.DriverFactory;
+import io.cucumber.java.en.*;
+import org.testng.Assert;
+
+public class LoginSteps {
+    private LoginPage loginPage;
+
+    @Given("user is on login page")
+    public void user_is_on_login_page() {
+        DriverFactory.initDriver(ConfigReader.get("browser"));
+        DriverFactory.getDriver().get(ConfigReader.get("loginUrl"));
+        loginPage = new LoginPage();
+    }
+
+    @When("user enters valid username and password")
+    public void user_enters_valid_username_and_password() throws Exception {
+        loginPage.login(ConfigReader.get("username"), ConfigReader.get("password"));
+    }
+
+    @When("clicks login button")
+    public void clicks_login_button() {
+        // Already inside login method
+    }
+
+    @Then("user should be logged in successfully")
+    public void user_should_be_logged_in_successfully() {
+        Assert.assertTrue(loginPage.isLogoutVisible(), "Logout button should be visible after login");
+        DriverFactory.quitDriver();
+    }
+}

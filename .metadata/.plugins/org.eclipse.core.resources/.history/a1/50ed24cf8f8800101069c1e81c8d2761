@@ -1,0 +1,114 @@
+package com.healthcare.pages;
+
+import com.healthcare.utils.DriverFactory;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+
+public class HealthyAgingFormPage {
+	private WebDriver driver;
+
+	// Locators (adjusted for WPForms structure)
+	private By firstNameField = By.id("cog-input-auto-0");
+	private By lastNameField = By.id("cog-input-auto-1");
+	private By phoneField = By.id("cog-1");
+	private By emailField = By.id("cog-2");
+
+	// Example checkboxes and radios – verify actual IDs/text in DOM
+	private By taiChiCheckbox = By.xpath(
+			"//*[@id=\"post-500\"]/div/div[1]/div/div[1]/div/form/div/div/div[1]/div/div[4]/fieldset[1]/div[1]/div[1]/div/label[1]/span[1]/span");
+	private By livingHealthyCheckbox = By.xpath(
+			"//*[@id=\"post-500\"]/div/div[1]/div/div[1]/div/form/div/div/div[1]/div/div[4]/fieldset[1]/div[1]/div[1]/div/label[2]/span[1]/span");
+	private By diabetesEducation = By.xpath(
+			"//*[@id=\"post-500\"]/div/div[1]/div/div[1]/div/form/div/div/div[1]/div/div[4]/fieldset[1]/div[1]/div[1]/div/label[3]/span[1]/span");
+	private By powerfulTools = By.xpath(
+			"//*[@id=\"post-500\"]/div/div[1]/div/div[1]/div/form/div/div/div[1]/div/div[4]/fieldset[1]/div[1]/div[1]/div/label[4]/span[1]/span");
+	private By matterBalance = By.xpath(
+			"//*[@id=\"post-500\"]/div/div[1]/div/div[1]/div/form/div/div/div[1]/div/div[4]/fieldset[1]/div[1]/div[1]/div/label[4]/span[1]/span");
+
+	private By countyEscambiaRadio = By.xpath(
+			"//*[@id=\"post-500\"]/div/div[1]/div/div[1]/div/form/div/div/div[1]/div/div[4]/fieldset[2]/div[1]/div[1]/div/label[1]/span[2]/div");
+	private By countrySantaRosaRadio = By.xpath(
+			"//*[@id=\"post-500\"]/div/div[1]/div/div[1]/div/form/div/div/div[1]/div/div[4]/fieldset[2]/div[1]/div[1]/div/label[2]/span[2]/div");
+	private By countryOkaloosaRadio = By.xpath(
+			"//*[@id=\"post-500\"]/div/div[1]/div/div[1]/div/form/div/div/div[1]/div/div[4]/fieldset[2]/div[1]/div[1]/div/label[3]/span[2]/div");
+	private By countryWaltonRadio = By.xpath(
+			"//*[@id=\"post-500\"]/div/div[1]/div/div[1]/div/form/div/div/div[1]/div/div[4]/fieldset[2]/div[1]/div[1]/div/label[4]/span[2]/div");
+
+	private By inpersonRadio = By.xpath(
+			"//*[@id=\"post-500\"]/div/div[1]/div/div[1]/div/form/div/div/div[1]/div/div[5]/fieldset/div[1]/div[1]/div/label[1]/span[2]/div");
+	private By virtualRadio = By.xpath(
+			"//*[@id=\"post-500\"]/div/div[1]/div/div[1]/div/form/div/div/div[1]/div/div[5]/fieldset/div[1]/div[1]/div/label[2]/span[2]/div");
+	private By nopreferenceRadio = By.xpath(
+			"//*[@id=\"post-500\"]/div/div[1]/div/div[1]/div/form/div/div/div[1]/div/div[5]/fieldset/div[1]/div[1]/div/label[3]/span[2]/div");
+
+	private By bestDescribedDropdown = By.id("cog-6");
+	private By howHeardField = By.id("//*[@id=\"cog-7\"]");
+
+	private By notifyCheckbox = By.xpath(
+			"//*[@id=\"post-500\"]/div/div[1]/div/div[1]/div/form/div/div/div[1]/div/div[8]/div/div[1]/label/span[2]");
+	private By submitButton = By.xpath("//*[@id=\"post-500\"]/div/div[1]/div/div[1]/div/form/div/div/div[1]/div/div[9]");
+
+	// Constructor
+	public HealthyAgingFormPage() {
+		this.driver = DriverFactory.getDriver();
+	}
+
+	// Actions
+	public void enterName(String first, String last) throws InterruptedException {
+		Thread.sleep(1000);
+		driver.findElement(firstNameField).sendKeys(first);
+		driver.findElement(lastNameField).sendKeys(last);
+	}
+
+	public void enterContact(String phone, String email) throws InterruptedException {
+		Thread.sleep(1000);
+		driver.findElement(phoneField).sendKeys(phone);
+		driver.findElement(emailField).sendKeys(email);
+	}
+
+	public void selectPrograms() throws InterruptedException {
+		driver.manage().window().maximize();
+		Thread.sleep(1000);
+		driver.findElement(taiChiCheckbox).click();
+		driver.findElement(livingHealthyCheckbox).click();
+		
+	}
+
+	public void selectCounty() throws InterruptedException {
+		Thread.sleep(1000);
+		driver.findElement(countyEscambiaRadio).click();
+	}
+
+	public void selectClassFormat() throws InterruptedException {
+		Thread.sleep(1000);
+		driver.findElement(virtualRadio).click();
+	}
+
+	public void selectDescription(String text) throws InterruptedException {
+		driver.manage().window().maximize();
+		Thread.sleep(1000);
+		WebElement dropdown = driver.findElement(bestDescribedDropdown);
+		new Select(dropdown).selectByVisibleText(text);
+		System.out.println("Checked");
+	}
+
+	public void enterHowHeard(String info) throws InterruptedException {
+		Thread.sleep(1000);
+		driver.findElement(howHeardField).sendKeys(info);
+	}
+
+	public void checkNotify() throws InterruptedException {
+		Thread.sleep(1000);
+		WebElement notify = driver.findElement(notifyCheckbox);
+		if (!notify.isSelected()) {
+			notify.click();
+		}
+	}
+
+	public void submitForm() throws InterruptedException {
+		Thread.sleep(2000); // wait before submit
+		driver.findElement(submitButton).click();
+	}
+}

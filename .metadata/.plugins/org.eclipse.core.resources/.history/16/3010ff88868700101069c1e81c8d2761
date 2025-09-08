@@ -1,0 +1,35 @@
+package com.healthcare.utils;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class DriverFactory {
+    private static WebDriver driver;
+
+    // Initialize ChromeDriver
+    public static void initDriver(String browser) {
+        if (driver == null) {
+            if (!browser.equalsIgnoreCase("chrome")) {
+                throw new IllegalArgumentException("Only Chrome is supported in this project.");
+            }
+            driver = new ChromeDriver();
+            driver.manage().window().maximize();
+        }
+    }
+
+    // Get driver instance
+    public static WebDriver getDriver() {
+        if (driver == null) {
+            throw new IllegalStateException("Driver is not initialized. Call initDriver() first.");
+        }
+        return driver;
+    }
+
+    // Quit driver
+    public static void quitDriver() {
+        if (driver != null) {
+            driver.quit();
+            driver = null;
+        }
+    }
+}

@@ -1,0 +1,58 @@
+package com.healthcare.tests;
+
+import com.healthcare.pages.HomePage;
+import com.healthcare.pages.ProgramsPage;
+import com.healthcare.utils.ConfigReader;
+import com.healthcare.utils.DriverFactory;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.Test;
+
+public class ProgramsTests {
+    private WebDriver driver;
+    private ProgramsPage programsPage;
+
+
+    @BeforeMethod
+    public void setup() {
+        // Initialize browser and navigate to base URL
+        DriverFactory.initDriver(ConfigReader.get("browser"));
+        DriverFactory.getDriver().get(ConfigReader.get("baseUrl"));
+        programsPage = new ProgramsPage();
+    }
+
+    @Test
+    public void testTobaccoPage() {
+        programsPage.hoverOverProgramsMenu();
+        programsPage.clickMenuItem("Tobacco");
+        System.out.println("Tobacco heading: " + programsPage.getPageHeading());
+    }
+
+    @Test
+    public void testAHECScholarsPage() {
+        programsPage.hoverOverProgramsMenu();
+        programsPage.clickMenuItem("AHEC Scholars");
+        System.out.println("AHEC Scholars heading: " + programsPage.getPageHeading());
+    }
+
+    @Test
+    public void testHealthyAgingPage() {
+        programsPage.hoverOverProgramsMenu();
+        programsPage.clickMenuItem("Healthy Aging");
+        System.out.println("Healthy Aging heading: " + programsPage.getPageHeading());
+    }
+
+    @Test
+    public void testCoveringFloridaPage() {
+        programsPage.hoverOverProgramsMenu();
+        programsPage.clickMenuItem("Covering Florida");
+        System.out.println("Covering Florida heading: " + programsPage.getPageHeading());
+    }
+
+    @AfterClass
+    public void tearDown() {
+        driver.quit();
+    }
+}

@@ -1,0 +1,27 @@
+package com.healthcare.pages;
+
+import com.healthcare.utils.DriverFactory;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
+
+public class ServicesPage {
+    private WebDriver driver;
+
+    private By servicesDropdown = By.xpath("//a[text()='Services']");
+    private By subMenuLinks = By.xpath("//a[text()='Services']/following-sibling::ul//a");
+
+    public ServicesPage() {
+        this.driver = DriverFactory.getDriver();
+    }
+
+    public void openServicesDropdown() {
+        driver.findElement(servicesDropdown).click();
+    }
+
+    public List<WebElement> getAllServiceLinks() {
+        return driver.findElements(subMenuLinks);
+    }
+}

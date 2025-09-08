@@ -1,0 +1,46 @@
+package com.healthcare.pages;
+
+import org.openqa.selenium.By;
+
+public class HomePage extends BasePage {
+	private By searchBar = By.name("s");
+	private By programsLink = By.xpath("//*[@id=\"menu-item-264\"]/a/span[1]");
+	private By servicesLink = By.xpath("//*[@id=\"menu-item-331\"]/a/span[1]");
+	private By aboutLink = By.xpath("//*[@id=\"menu-item-616\"]/a/span[1]");
+	private By cprLink = By.xpath("//*[@id=\"menu-item-467\"]/a/span[1]");
+	private By newsLink = By.xpath("//*[@id=\"menu-item-1097\"]/a/span");
+	private By myaccountLink = By.xpath("//*[@id=\"menu-main-menu\"]/li[8]/a/span[1]");
+	private By cartLink = By.xpath("//*[@id=\"menu-main-menu\"]/li[9]/a/span");
+
+	public void search(String query) {
+		type(searchBar, query);
+		click(searchBar);
+	}
+
+	public void goToPrograms() {
+		click(programsLink);
+	}
+
+	public void goToServices() {
+		click(servicesLink);
+	}
+
+	public void goToAbout() {
+		click(aboutLink);
+	}
+
+	public void goToCPR() {
+		click(cprLink);
+	}
+	
+	public void goToNews() {
+		click(newsLink);
+	}
+	
+	public void goToMyAccount() {
+		click(myaccountLink);
+	}
+	public void goToCart() {
+		click(cartLink);
+	}
+}

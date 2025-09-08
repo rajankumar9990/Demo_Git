@@ -1,0 +1,75 @@
+package com.healthcare.pages;
+
+import org.openqa.selenium.By;
+
+import com.healthcare.utils.DriverFactory;
+
+public class HomePage extends BasePage {
+	private By searchBar = By.name("s");
+	private By searchSubmit=By.xpath("//*[@id=\"wrapper\"]/header/div[1]/div[3]/div[1]/div/div/div/div/form/div/div[2]/input");
+	private By programsLink = By.xpath("//*[@id=\"menu-item-264\"]/a/span[1]");
+	private By servicesLink = By.xpath("//*[@id=\"menu-item-331\"]/a/span[1]");
+	private By aboutLink = By.xpath("//*[@id=\"menu-item-616\"]/a/span[1]");
+	private By cprLink = By.xpath("//*[@id=\"menu-item-467\"]/a/span[1]");
+	private By contactusLink = By.xpath("//*[@id=\"menu-item-209\"]/a/span");
+	private By newsLink = By.xpath("//*[@id=\"menu-item-1097\"]/a/span");
+	private By myaccountLink = By.xpath("//*[@id=\"menu-main-menu\"]/li[8]/a/span[1]");
+	private By cartLink = By.xpath("//*[@id=\"menu-main-menu\"]/li[9]/a");
+	private By homeLink = By.xpath("//*[@id=\"menu-item-207\"]/a/span");
+
+	
+
+	public void goToPrograms() {
+		click(programsLink);
+
+	}
+
+	public void goToServices() {
+		click(servicesLink);
+
+	}
+
+	public void goToAbout() {
+		click(aboutLink);
+
+	}
+
+	public void goToCPR() {
+		click(cprLink);
+
+	}
+
+	public void goToContactUs() {
+		click(contactusLink);
+		String pageTitle = DriverFactory.getDriver().getTitle();
+		System.out.println("Page title : " + pageTitle);
+	}
+
+	public void goToNews() {
+		click(newsLink);
+		String pageTitle = DriverFactory.getDriver().getTitle();
+		System.out.println("Page title : " + pageTitle);
+	}
+
+	public void goToMyAccount() {
+		click(myaccountLink);
+		String pageTitle = DriverFactory.getDriver().getTitle();
+		System.out.println("Page title : " + pageTitle);
+	}
+
+	public void goToCart() {
+		click(cartLink);
+		String pageTitle = DriverFactory.getDriver().getTitle();
+		System.out.println("Page title : " + pageTitle);
+	}
+
+	public void goToHome() {
+		click(homeLink);
+		String pageTitle = DriverFactory.getDriver().getTitle();
+		System.out.println("Page title : " + pageTitle);
+	}
+	public void search(String query) {
+		type(searchBar, query);
+		click(searchSubmit);
+	}
+}

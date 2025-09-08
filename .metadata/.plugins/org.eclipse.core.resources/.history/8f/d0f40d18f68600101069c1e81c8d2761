@@ -1,0 +1,72 @@
+package com.healthcare.tests;
+
+import com.healthcare.pages.ContactUsPage;
+import com.healthcare.utils.ConfigReader;
+import com.healthcare.utils.DriverFactory;
+import org.testng.Assert;
+import org.testng.annotations.*;
+
+public class ContactUsTests {
+    private ContactUsPage contactPage;
+
+    @BeforeClass
+    public void beforeClass() {
+        ConfigReader.loadConfig();
+    }
+
+    @BeforeMethod
+    public void setup() {
+        DriverFactory.initDriver(ConfigReader.get("browser"));
+        DriverFactory.getDriver().get(ConfigReader.get("baseUrl"));
+        contactPage = new ContactUsPage();
+    }
+
+    @Test
+    public void verifyContactOptions() throws Exception {
+        contactPage.goToContactUs();
+
+        // Store the main window handle
+        String mainWindowHandle = DriverFactory.getDriver().getWindowHandle();
+
+        // Click Address which opens new window
+        contactPage.clickAddress();
+
+        // Switch to newly opened window
+        for (String handle : DriverFactory.getDriver().getWindowHandles()) {
+            if (!handle.equals(mainWindowHandle)) {
+                DriverFactory.getDriver().switchTo().window(handle);
+                break;
+            }
+        }
+
+        // Close the new window
+        DriverFactory.getDriver().close();
+        Thread.sleep(2000);
+
+        // Switch back to main window
+        DriverFactory.getDriver().switchTo().window(mainWindowHandle);
+
+        // Click Call Us option
+        contactPage.clickCallUs();
+        Thread.sleep(2000);
+
+        // Click Fax option
+        contactPage.clickFax();
+        Thread.sleep(2000);
+
+        // Click Email Us option
+        contactPage.clickEmailUs();
+        Thread.sleep(2000);
+
+        // Basic assertion
+        String pageSource = DriverFactory.getDriver().getPageSource().toLowerCase();
+        Assert.assertTrue(pageSource.contains("contact"), "Contact Us page should be loaded");
+
+        System.out.println("Verified: All Contact Us options clicked with window switch handling!");
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        DriverFactory.quitDriver();
+    }
+}

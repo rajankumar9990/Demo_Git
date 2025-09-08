@@ -1,0 +1,54 @@
+package com.healthcare.tests;
+
+import com.healthcare.pages.ProgramsPage;
+import com.healthcare.utils.ConfigReader;
+import com.healthcare.utils.DriverFactory;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.Test;
+
+import java.util.ArrayList;
+
+public class ProgramsTests {
+    private WebDriver driver;
+    private ProgramsPage programsPage;
+
+    @BeforeClass
+    public void setup() {
+        DriverFactory.initDriver(ConfigReader.get("browser"));
+        driver = DriverFactory.getDriver();
+        driver.get(ConfigReader.get("baseUrl"));
+        programsPage = new ProgramsPage();
+    }
+
+    @Test
+    public void verifyAllProgramsSequentially() {
+        String[] programs = {"Tobacco", "AHEC Scholars", "Healthy Aging", "Covering Florida"};
+
+        for (String program : programs) {
+            // Hover & open link in same window
+            programsPage.hoverOverProgramsMenu();
+            programsPage.clickMenuItem(program);
+
+            // Switch to newly opened tab (last one)
+            ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+            driver.switchTo().window(tabs.get(tabs.size() - 1));
+
+            // Get heading
+            String heading = programsPage.getPageHeading();
+            System.out.println(program + " heading: " + heading);
+
+            // Close current tab
+            driver.close();
+
+            // Switch back to main tab
+            driver.switchTo().window(tabs.get(0));
+        }
+    }
+
+    @AfterClass
+    public void tearDown() {
+        driver.quit();
+    }
+}

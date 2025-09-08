@@ -1,0 +1,50 @@
+package com.healthcare.pages;
+
+import com.healthcare.utils.DriverFactory;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class RegistrationPage {
+    private WebDriver driver;
+
+    // Locators (adjust according to your actual page)
+    private By usernameField = By.id("reg_username");
+    private By emailField = By.id("reg_email");
+    private By passwordField = By.id("reg_password");
+    private By confirmPasswordField = By.id("confirmPassword");
+    private By registerButton = By.name("register");
+
+
+   
+    public void register(String username, String email, String password) {
+    	sleep(2000);
+        driver.findElement(usernameField).sendKeys(username);
+        sleep(2000);
+        driver.findElement(emailField).sendKeys(email);
+        sleep(2000);
+        driver.findElement(passwordField).sendKeys(password);
+        sleep(2000);
+        driver.findElement(confirmPasswordField).sendKeys(password);
+        sleep(20000);
+        driver.findElement(registerButton).click();
+        sleep(2000);
+    }
+    public RegistrationPage() {
+    	
+        this.driver = DriverFactory.getDriver();
+    }
+
+    public boolean isRegistrationSuccessful() {
+        return driver.getPageSource().toLowerCase().contains("registration successful");
+
+    }
+
+    private void sleep(long millis) {
+        try { Thread.sleep(millis); } catch (InterruptedException e) {}
+    }
+    public void clickRegisterButton() {
+        driver.findElement(registerButton).click();
+        sleep(2000);
+    }
+
+}

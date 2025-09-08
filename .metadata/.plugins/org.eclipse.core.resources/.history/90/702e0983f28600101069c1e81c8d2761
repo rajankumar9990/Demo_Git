@@ -1,0 +1,47 @@
+package com.healthcare.pages;
+
+import com.healthcare.utils.DriverFactory;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+public class ContactUsPage {
+    private WebDriver driver;
+
+    // Locators (adjust XPath/Text according to your actual app)
+    private By contactMenu = By.xpath("//*[@id=\"menu-item-209\"]/a/span");
+    private By addressOption = By.xpath("//*[@id=\"post-127\"]/div/div[1]/div/div/div/div[7]/div[1]/div/div[3]/p/a");
+    private By callUsOption = By.xpath("//*[@id=\"post-127\"]/div/div[1]/div/div/div/div[7]/div[2]/div/div[3]/p/a");
+    private By faxOption = By.xpath("//*[@id=\"post-127\"]/div/div[1]/div/div/div/div[7]/div[3]/div/div[3]/p/a");
+    private By emailUsOption = By.xpath("//*[@id=\"post-127\"]/div/div[1]/div/div/div/div[7]/div[4]/div/div[3]/p/a");
+
+    public ContactUsPage() {
+        this.driver = DriverFactory.getDriver();
+    }
+
+  
+    public void clickAddress() {
+        driver.findElement(addressOption).click();
+        sleep(2000);
+    }
+
+    public void clickCallUs() {
+        driver.findElement(callUsOption).click();
+        sleep(2000);
+    }
+
+    public void clickFax() {
+        driver.findElement(faxOption).click();
+        sleep(1000);
+    }
+
+    public void clickEmailUs() {
+        driver.findElement(emailUsOption).click();
+        sleep(2000);
+    }
+
+    // Helper sleep
+    private void sleep(long millis) {
+        try { Thread.sleep(millis); } catch (InterruptedException e) {}
+    }
+}

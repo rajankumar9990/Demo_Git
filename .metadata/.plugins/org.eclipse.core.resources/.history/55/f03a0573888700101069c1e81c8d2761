@@ -1,0 +1,44 @@
+package com.healthcare.stepdefinitions;
+
+import com.healthcare.pages.ProgramsPage;
+import com.healthcare.utils.ConfigReader;
+import com.healthcare.utils.DriverFactory;
+import io.cucumber.java.en.*;
+import org.openqa.selenium.WebDriver;
+import org.junit.jupiter.api.Assertions;
+
+public class ProgramsSteps {
+    private WebDriver driver;
+    private ProgramsPage programsPage;
+
+    @Given("user is on the homepage")
+    public void user_is_on_homepage() {
+        driver = DriverFactory.getDriver();
+        driver.get(ConfigReader.getProperty("baseUrl"));
+        programsPage = new ProgramsPage(driver);
+    }
+
+    @When("user navigates to Tobacco Program")
+    public void user_navigates_to_tobacco_program() {
+        programsPage.openProgramsMenu();
+        programsPage.selectTobaccoProgram();
+    }
+
+    @Then("Tobacco Program page should be displayed")
+    public void tobacco_program_page_should_be_displayed() {
+        Assertions.assertTrue(programsPage.getPageTitle().contains("Tobacco"),
+                "Tobacco Program page not displayed correctly!");
+    }
+
+    @When("user navigates to AHEC Scholars Program")
+    public void user_navigates_to_ahec_scholars_program() {
+        programsPage.openProgramsMenu();
+        programsPage.selectAhecScholarsProgram();
+    }
+
+    @Then("AHEC Scholars Program page should be displayed")
+    public void ahec_scholars_program_page_should_be_displayed() {
+        Assertions.assertTrue(programsPage.getPageTitle().contains("AHEC Scholars"),
+                "AHEC Scholars Program page not displayed correctly!");
+    }
+}

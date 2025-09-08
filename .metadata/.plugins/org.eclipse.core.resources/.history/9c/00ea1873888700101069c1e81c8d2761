@@ -1,0 +1,34 @@
+package com.healthcare.pages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class ProgramsPage {
+    private WebDriver driver;
+
+    // Locators (example – adjust to match actual site)
+    private By programsMenu = By.linkText("Programs");
+    private By tobaccoProgram = By.linkText("Tobacco");
+    private By ahecScholarsProgram = By.linkText("AHEC Scholars");
+    private By pageTitle = By.tagName("h1");
+
+    public ProgramsPage(WebDriver driver) {
+        this.driver = driver;
+    }
+
+    public void openProgramsMenu() {
+        driver.findElement(programsMenu).click();
+    }
+
+    public void selectTobaccoProgram() {
+        driver.findElement(tobaccoProgram).click();
+    }
+
+    public void selectAhecScholarsProgram() {
+        driver.findElement(ahecScholarsProgram).click();
+    }
+
+    public String getPageTitle() {
+        return driver.findElement(pageTitle).getText();
+    }
+}

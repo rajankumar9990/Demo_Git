@@ -1,0 +1,10 @@
+@registration
+Feature: User Registration
+
+  @registration
+  Scenario: Successful user registration
+    Given user is on the registration page
+    When user enters username "testuser99" email "testuser@example.com" and password "Test@1234"
+    And clicks the register button
+    Then registration should be successful
+    And user closes browser

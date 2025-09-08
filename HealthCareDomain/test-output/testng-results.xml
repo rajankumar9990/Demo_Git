@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="7" passed="5" failed="2" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-09-06T00:06:41 IST" name="Healthcare Automation Suite" finished-at="2025-09-06T00:10:30 IST" duration-ms="228984">
+    <groups>
+    </groups>
+    <test started-at="2025-09-06T00:06:41 IST" name="Healthcare Tests" finished-at="2025-09-06T00:10:30 IST" duration-ms="228984">
+      <class name="com.healthcare.tests.HomeTests">
+        <test-method is-config="true" signature="beforeClass()[pri:0, instance:com.healthcare.tests.HomeTests@6c7a164b]" started-at="2025-09-06T00:06:41 IST" name="beforeClass" finished-at="2025-09-06T00:06:41 IST" duration-ms="25" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeClass -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.healthcare.tests.HomeTests@6c7a164b]" started-at="2025-09-06T00:06:41 IST" name="setup" finished-at="2025-09-06T00:06:46 IST" duration-ms="4763" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="verifySearchNavigation()[pri:0, instance:com.healthcare.tests.HomeTests@6c7a164b]" started-at="2025-09-06T00:06:46 IST" name="verifySearchNavigation" finished-at="2025-09-06T00:07:15 IST" duration-ms="29542" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifySearchNavigation -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.healthcare.tests.HomeTests@6c7a164b]" started-at="2025-09-06T00:07:15 IST" name="tearDown" finished-at="2025-09-06T00:07:18 IST" duration-ms="2545" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.healthcare.tests.HomeTests -->
+      <class name="com.healthcare.tests.LoginTests">
+        <test-method is-config="true" signature="beforeClass()[pri:0, instance:com.healthcare.tests.LoginTests@47c81abf]" started-at="2025-09-06T00:08:51 IST" name="beforeClass" finished-at="2025-09-06T00:08:51 IST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeClass -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.healthcare.tests.LoginTests@47c81abf]" started-at="2025-09-06T00:08:51 IST" name="setup" finished-at="2025-09-06T00:09:08 IST" duration-ms="17152" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="verifyLogin()[pri:0, instance:com.healthcare.tests.LoginTests@47c81abf]" started-at="2025-09-06T00:09:08 IST" name="verifyLogin" finished-at="2025-09-06T00:09:39 IST" duration-ms="31604" status="FAIL">
+          <exception class="org.openqa.selenium.ElementClickInterceptedException">
+            <message>
+              <![CDATA[element click intercepted: Element <button type="submit" class="woocommerce-button button woocommerce-form-login__submit" name="login" value="...">Log in</button> is not clickable at point (236, 585). Other element would receive the click: <p class="form-row">...</p>
+  (Session info: MicrosoftEdge=139.0.3405.125)
+Build info: version: '4.25.0', revision: '8a8aea2337'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.12'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Command: [aab43927239130f9e3cbbd18a7c6de7f, clickElement {id=f.729D1AF1723DDEE426F13F6FB425CDB5.d.5AA637E6C080A68C73C64D17F1747D29.e.47}]
+Capabilities {acceptInsecureCerts: false, browserName: MicrosoftEdge, browserVersion: 139.0.3405.125, fedcm:accounts: true, ms:edgeOptions: {debuggerAddress: localhost:63434}, msedge: {msedgedriverVersion: 139.0.3405.102 (7dccc8fa00f..., userDataDir: C:\Users\91999\AppData\Loca...}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63434/devtoo..., se:cdpVersion: 139.0.3405.125, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[EdgeDriver: MicrosoftEdge on windows (aab43927239130f9e3cbbd18a7c6de7f)] -> xpath: //*[@id="customer_login"]/div[1]/form/p[3]/button]
+Session ID: aab43927239130f9e3cbbd18a7c6de7f]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element <button type="submit" class="woocommerce-button button woocommerce-form-login__submit" name="login" value="...">Log in</button> is not clickable at point (236, 585). Other element would receive the click: <p class="form-row">...</p>
+  (Session info: MicrosoftEdge=139.0.3405.125)
+Build info: version: '4.25.0', revision: '8a8aea2337'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.12'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Command: [aab43927239130f9e3cbbd18a7c6de7f, clickElement {id=f.729D1AF1723DDEE426F13F6FB425CDB5.d.5AA637E6C080A68C73C64D17F1747D29.e.47}]
+Capabilities {acceptInsecureCerts: false, browserName: MicrosoftEdge, browserVersion: 139.0.3405.125, fedcm:accounts: true, ms:edgeOptions: {debuggerAddress: localhost:63434}, msedge: {msedgedriverVersion: 139.0.3405.102 (7dccc8fa00f..., userDataDir: C:\Users\91999\AppData\Loca...}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63434/devtoo..., se:cdpVersion: 139.0.3405.125, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[EdgeDriver: MicrosoftEdge on windows (aab43927239130f9e3cbbd18a7c6de7f)] -> xpath: //*[@id="customer_login"]/div[1]/form/p[3]/button]
+Session ID: aab43927239130f9e3cbbd18a7c6de7f
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
+at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:223)
+at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:76)
+at com.healthcare.pages.LoginPage.login(LoginPage.java:24)
+at com.healthcare.tests.LoginTests.verifyLogin(LoginTests.java:29)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:463)
+at org.testng.internal.thread.ThreadUtil.lambda$execute$0(ThreadUtil.java:64)
+at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+at java.base/java.lang.Thread.run(Thread.java:842)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.ElementClickInterceptedException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyLogin -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.healthcare.tests.LoginTests@47c81abf]" started-at="2025-09-06T00:09:40 IST" name="tearDown" finished-at="2025-09-06T00:09:40 IST" duration-ms="509" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.healthcare.tests.LoginTests -->
+      <class name="com.healthcare.tests.ProgramsTests">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.healthcare.tests.ProgramsTests@4bff7da0]" started-at="2025-09-06T00:07:18 IST" name="setup" finished-at="2025-09-06T00:07:33 IST" duration-ms="15376" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="verifyProgramsSequentiallyInSameTab()[pri:0, instance:com.healthcare.tests.ProgramsTests@4bff7da0]" started-at="2025-09-06T00:07:33 IST" name="verifyProgramsSequentiallyInSameTab" finished-at="2025-09-06T00:07:57 IST" duration-ms="24044" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyProgramsSequentiallyInSameTab -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.healthcare.tests.ProgramsTests@4bff7da0]" started-at="2025-09-06T00:07:57 IST" name="tearDown" finished-at="2025-09-06T00:07:58 IST" duration-ms="345" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.healthcare.tests.ProgramsTests -->
+      <class name="com.healthcare.tests.HealthyAgingFormTests">
+        <test-method is-config="true" signature="beforeClass()[pri:0, instance:com.healthcare.tests.HealthyAgingFormTests@3f1d2e23]" started-at="2025-09-06T00:07:58 IST" name="beforeClass" finished-at="2025-09-06T00:07:58 IST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeClass -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.healthcare.tests.HealthyAgingFormTests@3f1d2e23]" started-at="2025-09-06T00:07:58 IST" name="setUp" finished-at="2025-09-06T00:08:12 IST" duration-ms="14287" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testFormSubmission()[pri:0, instance:com.healthcare.tests.HealthyAgingFormTests@3f1d2e23]" started-at="2025-09-06T00:08:12 IST" name="testFormSubmission" finished-at="2025-09-06T00:08:33 IST" duration-ms="20769" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testFormSubmission -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.healthcare.tests.HealthyAgingFormTests@3f1d2e23]" started-at="2025-09-06T00:08:33 IST" name="tearDown" finished-at="2025-09-06T00:08:33 IST" duration-ms="478" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.healthcare.tests.HealthyAgingFormTests -->
+      <class name="com.healthcare.tests.RegistrationTests">
+        <test-method is-config="true" signature="beforeClass()[pri:0, instance:com.healthcare.tests.RegistrationTests@776a6d9b]" started-at="2025-09-06T00:09:40 IST" name="beforeClass" finished-at="2025-09-06T00:09:40 IST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeClass -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.healthcare.tests.RegistrationTests@776a6d9b]" started-at="2025-09-06T00:09:40 IST" name="setup" finished-at="2025-09-06T00:09:46 IST" duration-ms="6103" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="verifyRegistration()[pri:0, instance:com.healthcare.tests.RegistrationTests@776a6d9b]" started-at="2025-09-06T00:09:46 IST" name="verifyRegistration" finished-at="2025-09-06T00:09:55 IST" duration-ms="8501" status="FAIL">
+          <exception class="org.openqa.selenium.NoSuchElementException">
+            <message>
+              <![CDATA[no such element: Unable to locate element: {"method":"css selector","selector":"#confirmPassword"}
+  (Session info: MicrosoftEdge=139.0.3405.125)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: '4.25.0', revision: '8a8aea2337'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.12'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Command: [9d999a29acd470ad3082273cf53b603d, findElement {value=confirmPassword, using=id}]
+Capabilities {acceptInsecureCerts: false, browserName: MicrosoftEdge, browserVersion: 139.0.3405.125, fedcm:accounts: true, ms:edgeOptions: {debuggerAddress: localhost:62585}, msedge: {msedgedriverVersion: 139.0.3405.102 (7dccc8fa00f..., userDataDir: C:\Users\91999\AppData\Loca...}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:62585/devtoo..., se:cdpVersion: 139.0.3405.125, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 9d999a29acd470ad3082273cf53b603d]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"css selector","selector":"#confirmPassword"}
+  (Session info: MicrosoftEdge=139.0.3405.125)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: '4.25.0', revision: '8a8aea2337'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.12'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Command: [9d999a29acd470ad3082273cf53b603d, findElement {value=confirmPassword, using=id}]
+Capabilities {acceptInsecureCerts: false, browserName: MicrosoftEdge, browserVersion: 139.0.3405.125, fedcm:accounts: true, ms:edgeOptions: {debuggerAddress: localhost:62585}, msedge: {msedgedriverVersion: 139.0.3405.102 (7dccc8fa00f..., userDataDir: C:\Users\91999\AppData\Loca...}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:62585/devtoo..., se:cdpVersion: 139.0.3405.125, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 9d999a29acd470ad3082273cf53b603d
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
+at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+at com.healthcare.pages.RegistrationPage.register(RegistrationPage.java:27)
+at com.healthcare.tests.RegistrationTests.verifyRegistration(RegistrationTests.java:34)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:463)
+at org.testng.internal.thread.ThreadUtil.lambda$execute$0(ThreadUtil.java:64)
+at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+at java.base/java.lang.Thread.run(Thread.java:842)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyRegistration -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.healthcare.tests.RegistrationTests@776a6d9b]" started-at="2025-09-06T00:09:55 IST" name="tearDown" finished-at="2025-09-06T00:09:59 IST" duration-ms="4453" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.healthcare.tests.RegistrationTests -->
+      <class name="com.healthcare.tests.ContactUsTests">
+        <test-method is-config="true" signature="beforeClass()[pri:0, instance:com.healthcare.tests.ContactUsTests@21d03963]" started-at="2025-09-06T00:09:59 IST" name="beforeClass" finished-at="2025-09-06T00:09:59 IST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeClass -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.healthcare.tests.ContactUsTests@21d03963]" started-at="2025-09-06T00:09:59 IST" name="setup" finished-at="2025-09-06T00:10:04 IST" duration-ms="4772" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="verifyContactOptions()[pri:0, instance:com.healthcare.tests.ContactUsTests@21d03963]" started-at="2025-09-06T00:10:04 IST" name="verifyContactOptions" finished-at="2025-09-06T00:10:29 IST" duration-ms="24792" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyContactOptions -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.healthcare.tests.ContactUsTests@21d03963]" started-at="2025-09-06T00:10:29 IST" name="tearDown" finished-at="2025-09-06T00:10:30 IST" duration-ms="970" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.healthcare.tests.ContactUsTests -->
+      <class name="com.healthcare.tests.ServicesTests">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.healthcare.tests.ServicesTests@536dbea0]" started-at="2025-09-06T00:08:33 IST" name="setup" finished-at="2025-09-06T00:08:38 IST" duration-ms="4332" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="verifyServices()[pri:0, instance:com.healthcare.tests.ServicesTests@536dbea0]" started-at="2025-09-06T00:08:38 IST" name="verifyServices" finished-at="2025-09-06T00:08:50 IST" duration-ms="12668" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyServices -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.healthcare.tests.ServicesTests@536dbea0]" started-at="2025-09-06T00:08:50 IST" name="tearDown" finished-at="2025-09-06T00:08:51 IST" duration-ms="489" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.healthcare.tests.ServicesTests -->
+    </test> <!-- Healthcare Tests -->
+  </suite> <!-- Healthcare Automation Suite -->
+</testng-results>

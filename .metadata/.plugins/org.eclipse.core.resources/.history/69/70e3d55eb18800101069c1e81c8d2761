@@ -1,0 +1,63 @@
+package com.healthcare.tests;
+
+import com.healthcare.pages.HealthyAgingFormPage;
+import com.healthcare.utils.ConfigReader;
+import com.healthcare.utils.DriverFactory;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.junit.jupiter.api.Assertions;
+import org.testng.annotations.*;
+
+public class HealthyAgingFormTests {
+    private WebDriver driver;
+    private HealthyAgingFormPage formPage;
+
+    @BeforeClass
+    public void beforeClass() {
+    	 driver.get(ConfigReader.getProperty("loginUrl"));
+    }
+
+    @BeforeMethod
+    public void setUp() throws Exception {
+        DriverFactory.initDriver();
+        driver = DriverFactory.getDriver();
+        driver.get(ConfigReader.getProperty("healthyAgingUrl"));
+        Thread.sleep(3000);
+        formPage = new HealthyAgingFormPage();
+    }
+
+    @Test
+    public void testFormSubmission() throws Exception {
+        formPage.enterName("XYZ", "ABC");
+        formPage.enterContact("1234567890", "xyz@gmail.com");
+        formPage.selectPrograms();
+        formPage.selectCounty();
+        formPage.selectClassFormat();
+        formPage.selectDescription("An");
+        formPage.enterHowHeard("Through a friend");
+        formPage.checkNotify();
+        formPage.submitForm();
+
+        Thread.sleep(3000);
+
+        By thankYou = By.xpath("//*[@id=\"post-500\"]/div/div[1]/div/div[1]/div/form/div/div/div[1]/div[1]/div/div[1]");
+       
+        String actualMessage = driver.findElement(thankYou).getText();
+
+        Assertions.assertTrue(
+                actualMessage.contains("Thank you for filling out the form. Your response has been recorded."),
+                "Form submission did not succeed!"
+        );
+
+        System.out.println("Healthy Aging form submitted successfully!");
+    }
+
+    @AfterMethod
+    public void tearDown() throws InterruptedException {
+        Thread.sleep(4000); // small wait before closing browser
+        if (driver != null) {
+            driver.close();
+        }
+    }
+
+}

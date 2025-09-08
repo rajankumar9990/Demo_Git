@@ -1,0 +1,9 @@
+@programs
+Feature: Programs Dropdown Navigation
+  Verify user can navigate to all program pages
+
+  Scenario: Navigate through each program submenu
+    Given the user is on the homepage
+    When the user navigates through each program
+    Then the user should be able to access all programs
+    Then user close browser

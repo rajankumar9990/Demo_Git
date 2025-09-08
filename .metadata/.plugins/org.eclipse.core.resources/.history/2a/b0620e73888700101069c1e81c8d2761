@@ -1,0 +1,41 @@
+package com.healthcare.tests;
+
+import com.healthcare.pages.ProgramsPage;
+import com.healthcare.utils.ConfigReader;
+import com.healthcare.utils.DriverFactory;
+import org.junit.jupiter.api.*;
+import org.openqa.selenium.WebDriver;
+
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+public class ProgramsTests {
+    private WebDriver driver;
+    private ProgramsPage programsPage;
+
+    @BeforeAll
+    public void setUp() {
+        driver = DriverFactory.getDriver();
+        driver.get(ConfigReader.getProperty("baseUrl")); // Add baseUrl in config.properties
+        programsPage = new ProgramsPage(driver);
+    }
+
+    @Test
+    public void testTobaccoProgramPage() {
+        programsPage.openProgramsMenu();
+        programsPage.selectTobaccoProgram();
+        Assertions.assertTrue(programsPage.getPageTitle().contains("Tobacco"),
+                "Tobacco Program page not opened correctly!");
+    }
+
+    @Test
+    public void testAhecScholarsProgramPage() {
+        programsPage.openProgramsMenu();
+        programsPage.selectAhecScholarsProgram();
+        Assertions.assertTrue(programsPage.getPageTitle().contains("AHEC Scholars"),
+                "AHEC Scholars Program page not opened correctly!");
+    }
+
+    @AfterAll
+    public void tearDown() {
+        DriverFactory.quitDriver();
+    }
+}

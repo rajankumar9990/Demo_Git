@@ -1,0 +1,28 @@
+package com.healthcare.pages;
+
+import com.healthcare.utils.DriverFactory;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
+
+public class ProgramsPage {
+    private WebDriver driver;
+
+    private By programsDropdown = By.xpath("//*[@id='menu-item-264']/a/span[1]");
+    private By programLinks = By.xpath("//*[@id='menu-item-264']//ul/li/a"); // all sub-menu items
+    public ProgramsPage() {
+        this.driver = DriverFactory.getDriver();
+    }
+
+    // Clicks the Programs dropdown
+    public void openProgramsDropdown() {
+        driver.findElement(programsDropdown).click();
+    }
+
+    // Returns all submenu links (Tobacco, AHEC Scholars, etc.)
+    public List<WebElement> getAllProgramLinks() {
+        return driver.findElements(programLinks);
+    }
+}

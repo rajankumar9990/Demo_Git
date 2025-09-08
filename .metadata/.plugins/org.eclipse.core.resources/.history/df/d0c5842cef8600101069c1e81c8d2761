@@ -1,0 +1,52 @@
+package com.healthcare.pages;
+
+import com.healthcare.utils.DriverFactory;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+public class ContactUsPage {
+    private WebDriver driver;
+
+    // Locators (adjust XPath/Text according to your actual app)
+    private By contactMenu = By.xpath("//a[contains(text(),'Contact Us')]");
+    private By addressOption = By.xpath("//a[contains(text(),'Address')]");
+    private By callUsOption = By.xpath("//a[contains(text(),'Call Us')]");
+    private By faxOption = By.xpath("//a[contains(text(),'Fax')]");
+    private By emailUsOption = By.xpath("//a[contains(text(),'Email Us')]");
+
+    public ContactUsPage() {
+        this.driver = DriverFactory.getDriver();
+    }
+
+    // Navigate to Contact Us section
+    public void goToContactUs() {
+        driver.findElement(contactMenu).click();
+        sleep(1000);
+    }
+
+    public void clickAddress() {
+        driver.findElement(addressOption).click();
+        sleep(1000);
+    }
+
+    public void clickCallUs() {
+        driver.findElement(callUsOption).click();
+        sleep(1000);
+    }
+
+    public void clickFax() {
+        driver.findElement(faxOption).click();
+        sleep(1000);
+    }
+
+    public void clickEmailUs() {
+        driver.findElement(emailUsOption).click();
+        sleep(1000);
+    }
+
+    // Helper sleep
+    private void sleep(long millis) {
+        try { Thread.sleep(millis); } catch (InterruptedException e) {}
+    }
+}

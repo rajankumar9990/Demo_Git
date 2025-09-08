@@ -1,0 +1,11 @@
+package com.healthcare.pages;
+
+import org.openqa.selenium.By;
+
+public class HomePage extends BasePage {
+    private By searchBar = By.cssSelector("input[type='search']");
+
+    public boolean isSearchBarDisplayed() {
+        return driver.findElement(searchBar).isDisplayed();
+    }
+}

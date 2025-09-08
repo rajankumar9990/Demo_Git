@@ -1,0 +1,5 @@
+browser=chrome
+loginUrl=https://westfloridaahec.org/login
+registerUrl=https://westfloridaahec.org/register
+username=testuser
+password=Test@123

@@ -1,0 +1,39 @@
+package com.healthcare.stepdefinitions;
+
+import com.healthcare.pages.RegistrationPage;
+import com.healthcare.utils.ConfigReader;
+import com.healthcare.utils.DriverFactory;
+import io.cucumber.java.en.*;
+import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.WebDriver;
+
+public class RegistrationSteps {
+    private WebDriver driver;
+    private RegistrationPage registrationPage;
+
+    @Given("user is on the registration page")
+    public void user_is_on_the_registration_page() {
+        driver = DriverFactory.getDriver();
+        driver.get(ConfigReader.getProperty("registerUrl")); // ✅ from config file
+        registrationPage = new RegistrationPage();
+    }
+
+    @When("user registers with username {string} email {string} and password {string}")
+    public void user_registers_with_username_email_and_password(String username, String email, String password) {
+        registrationPage.register(username, email, password);
+    }
+
+    @Then("registration should be successful")
+    public void registration_should_be_successful() {
+        Assertions.assertTrue(
+                registrationPage.isRegistrationSuccessful(),
+                "Registration was not successful!"
+        );
+    }
+
+    @And("user closes browser")
+    public void user_closes_browser() throws InterruptedException {
+        Thread.sleep(2000);
+        DriverFactory.quitDriver();
+    }
+}

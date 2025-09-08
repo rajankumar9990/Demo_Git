@@ -1,0 +1,62 @@
+package com.healthcare.tests;
+
+import com.healthcare.pages.HealthyAgingFormPage;
+import com.healthcare.utils.ConfigReader;
+import com.healthcare.utils.DriverFactory;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
+import org.testng.annotations.*;
+
+public class HealthyAgingFormTests {
+	private WebDriver driver;
+	private HealthyAgingFormPage formPage;
+
+	@BeforeClass
+	public void beforeClass() {
+		// Load config file once
+		ConfigReader.loadConfig();
+	}
+
+	@BeforeMethod
+	public void setUp() throws Exception {
+		// Initialize browser
+		DriverFactory.initDriver(ConfigReader.get("browser"));
+		driver = DriverFactory.getDriver();
+
+		// Navigate using config value
+		driver.get(ConfigReader.get("healthyAgingUrl"));
+		Thread.sleep(10000);
+		// Initialize Page Object
+		formPage = new HealthyAgingFormPage();
+	}
+
+	@Test
+	public void testFormSubmission() throws InterruptedException {
+		formPage.enterName("XYZ", "ABC");
+		formPage.enterContact("1234567890", "xyz@gmail.com");
+		formPage.selectPrograms();
+		formPage.selectCounty();
+		formPage.selectClassFormat();
+		formPage.selectDescription("An");
+		formPage.enterHowHeard("Through a friend");
+		formPage.checkNotify();
+
+		formPage.submitForm();
+		Thread.sleep(5000);
+		By thankYou = By.xpath("//*[@id=\"post-500\"]/div/div[1]/div/div[1]/div/form/div/div/div[1]/div[1]/div/div[1]");
+		String actualMessage = driver.findElement(thankYou).getText();
+		Assert.assertTrue(
+				actualMessage.contains("Thank you for filling out the form. Your response has been recorded."),
+				"Form submission did not succeed!");
+		System.out.println("Healthy Aging form submitted successfully!");
+	}
+
+	@AfterMethod
+	public void tearDown() {
+		if (driver != null) {
+			driver.quit();
+		}
+	}
+}

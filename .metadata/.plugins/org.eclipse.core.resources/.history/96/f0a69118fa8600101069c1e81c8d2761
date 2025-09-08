@@ -1,0 +1,40 @@
+package com.healthcare.tests;
+
+import com.healthcare.pages.RegistrationPage;
+import com.healthcare.utils.ConfigReader;
+import com.healthcare.utils.DriverFactory;
+import org.testng.Assert;
+import org.testng.annotations.*;
+
+public class RegistrationTests {
+    private RegistrationPage registerPage;
+
+    @BeforeClass
+    public void beforeClass() {
+        ConfigReader.loadConfig();
+    }
+
+    @BeforeMethod
+    public void setup() {
+        DriverFactory.initDriver(ConfigReader.get("browser"));
+        DriverFactory.getDriver().get(ConfigReader.get("registerUrl")); 
+        registerPage = new RegistrationPage();
+    }
+
+    @Test
+    public void verifyRegistration() {
+        String username = "testuser";
+        String email = "testuser@example.com";
+        String password = "Test@123";
+
+        registerPage.register(username, email, password);
+
+        Assert.assertTrue(registerPage.isRegistrationSuccessful(), "Registration should be successful");
+        System.out.println("Registration successful! User created.");
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        DriverFactory.quitDriver();
+    }
+}

@@ -1,0 +1,43 @@
+package com.healthcare.tests;
+
+import com.healthcare.pages.HealthyAgingFormPage;
+import com.healthcare.utils.DriverFactory;
+import org.testng.Assert;
+import org.testng.annotations.*;
+import org.openqa.selenium.WebDriver;
+
+public class HealthyAgingFormTests {
+    private WebDriver driver;
+    private HealthyAgingFormPage formPage;
+
+    @BeforeMethod
+    public void setUp() {
+        driver = DriverFactory.getDriver();
+        driver.get("https://westfloridaahec.org/healthy-aging/"); 
+        formPage = new HealthyAgingFormPage();
+    }
+
+    @Test
+    public void testFormSubmission() throws InterruptedException {
+        formPage.enterName("John", "Doe");
+        formPage.enterContact("1234567890", "john.doe@example.com");
+        formPage.selectPrograms();
+        formPage.selectCounty();
+        formPage.selectClassFormat();
+        formPage.selectDescription("Student");
+        formPage.enterHowHeard("Through a friend");
+        formPage.checkNotify();
+        formPage.submitForm();
+
+        // Use TestNG Assert
+        Assert.assertTrue(driver.getPageSource().contains("Thank you"),
+                "Form submission did not succeed!");
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+}

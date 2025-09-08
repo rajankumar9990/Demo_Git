@@ -1,0 +1,43 @@
+package com.healthcare.tests;
+
+import com.healthcare.pages.LoginPage;
+import com.healthcare.utils.ConfigReader;
+import com.healthcare.utils.DriverFactory;
+import org.testng.Assert;
+import org.testng.annotations.*;
+
+public class LoginTests {
+    private LoginPage loginPage;
+
+    @BeforeClass
+    public void beforeClass() {
+        ConfigReader.loadConfig();
+    }
+
+    @BeforeMethod
+    public void setup() {
+        DriverFactory.initDriver(ConfigReader.get("browser"));
+        DriverFactory.getDriver().get(ConfigReader.get("loginUrl")); // add loginUrl in config.properties
+        loginPage = new LoginPage();
+    }
+
+    @Test
+    public void verifyValidLogin() throws Exception {
+        loginPage.enterUsername(ConfigReader.get("username")); // values from config.properties
+        loginPage.enterPassword(ConfigReader.get("password"));
+        loginPage.clickLogin();
+        Thread.sleep(2000);
+
+        String welcomeMsg = loginPage.getWelcomeMessage();
+        Assert.assertTrue(
+                welcomeMsg.toLowerCase().contains("welcome"),
+                "Login should show welcome message"
+        );
+        System.out.println("✅ Login successful and verified!");
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        DriverFactory.quitDriver();
+    }
+}

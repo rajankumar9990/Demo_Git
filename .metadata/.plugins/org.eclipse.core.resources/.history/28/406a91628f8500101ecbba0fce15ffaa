@@ -1,0 +1,23 @@
+package com.healthcare.pages;
+
+import org.openqa.selenium.By;
+
+public class HomePage extends BasePage {
+    private By searchBar = By.name("s");
+    private By programsLink = By.xpath("//*[@id=\"menu-item-264\"]/a/span[1]");
+    private By servicesLink = By.xpath("//*[@id=\"menu-item-331\"]/a/span[1]");
+
+    public void search(String query) throws Exception {
+        type(searchBar, query);
+        click(searchBar);
+        Thread.sleep(2000);
+    }
+
+    public void goToPrograms() {
+        click(programsLink);
+    }
+
+    public void goToServices() {
+        click(servicesLink);
+    }
+}

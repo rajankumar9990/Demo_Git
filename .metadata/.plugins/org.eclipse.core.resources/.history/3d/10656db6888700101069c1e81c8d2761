@@ -1,0 +1,56 @@
+package com.healthcare.tests;
+
+import com.healthcare.pages.ProgramsPage;
+import com.healthcare.utils.ConfigReader;
+import com.healthcare.utils.DriverFactory;
+import org.junit.jupiter.api.*;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
+
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+public class ProgramsTests {
+    private WebDriver driver;
+    private ProgramsPage programsPage;
+    private String baseUrl;
+
+    @BeforeAll
+    public void setUp() {
+        driver = DriverFactory.getDriver();
+        baseUrl = ConfigReader.getProperty("baseUrl");
+        driver.get(baseUrl);
+        programsPage = new ProgramsPage();
+    }
+
+    @Test
+    public void testAllProgramPages() {
+        List<WebElement> links = programsPage.getAllProgramLinks();
+
+        for (int i = 0; i < links.size(); i++) {
+            programsPage.openProgramsDropdown();
+
+            // Re-fetch links to avoid stale element issue
+            links = programsPage.getAllProgramLinks();
+            WebElement link = links.get(i);
+            String linkText = link.getText();
+
+            System.out.println("Navigating to: " + linkText);
+            programsPage.clickProgramLink(link);
+
+            // Assert page title contains program name
+            Assertions.assertTrue(
+                    programsPage.getPageTitle().toLowerCase().contains(linkText.toLowerCase()),
+                    linkText + " page did not open correctly!"
+            );
+
+            // Go back home for next iteration
+            programsPage.goHome(baseUrl);
+        }
+    }
+
+    @AfterAll
+    public void tearDown() {
+        DriverFactory.quitDriver();
+    }
+}

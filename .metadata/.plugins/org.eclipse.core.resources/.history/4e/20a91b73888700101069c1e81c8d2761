@@ -1,0 +1,13 @@
+@programs
+Feature: Programs Page Navigation
+  Verify navigation to different Programs pages
+
+  Scenario: Open Tobacco Program page
+    Given user is on the homepage
+    When user navigates to Tobacco Program
+    Then Tobacco Program page should be displayed
+
+  Scenario: Open AHEC Scholars Program page
+    Given user is on the homepage
+    When user navigates to AHEC Scholars Program
+    Then AHEC Scholars Program page should be displayed

@@ -1,0 +1,32 @@
+package com.healthcare.pages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class HomePage extends BasePage {
+    private By navMenu = By.cssSelector("nav");                    // adjust locator if needed
+    private By healthProgramsSection = By.xpath("//section[contains(., 'Programs')]");
+    private By resourcesSection = By.xpath("//section[contains(., 'Resources')]");
+    private By searchInput = By.name("s");                         // common WP search field name
+    private By searchButton = By.cssSelector("button[type='submit']");
+
+    public HomePage() { super(); }
+
+    public void open() {
+        driver.get(com.healthcare.utils.ConfigReader.get("baseUrl"));
+    }
+
+    public boolean isNavVisible() { return driver.findElements(navMenu).size() > 0; }
+    public boolean isProgramsVisible() { return driver.findElements(healthProgramsSection).size() > 0; }
+    public boolean isResourcesVisible() { return driver.findElements(resourcesSection).size() > 0; }
+
+    public void search(String keyword) {
+        driver.findElement(searchInput).clear();
+        driver.findElement(searchInput).sendKeys(keyword);
+        driver.findElement(searchButton).click();
+    }
+
+    public void clickProgramLink(String linkText) {
+        driver.findElement(By.linkText(linkText)).click();
+    }
+}

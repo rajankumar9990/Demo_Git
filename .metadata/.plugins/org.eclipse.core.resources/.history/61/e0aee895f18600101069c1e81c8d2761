@@ -1,0 +1,50 @@
+package com.healthcare.tests;
+
+import com.healthcare.pages.ContactUsPage;
+import com.healthcare.utils.ConfigReader;
+import com.healthcare.utils.DriverFactory;
+import org.testng.Assert;
+import org.testng.annotations.*;
+
+public class ContactUsTests {
+    private ContactUsPage contactPage;
+
+    @BeforeClass
+    public void beforeClass() {
+        ConfigReader.loadConfig();
+    }
+
+    @BeforeMethod
+    public void setup() {
+        DriverFactory.initDriver(ConfigReader.get("browser"));
+        DriverFactory.getDriver().get(ConfigReader.get("baseUrl"));
+        contactPage = new ContactUsPage();
+    }
+
+    @Test
+    public void verifyContactOptions() {
+        contactPage.goToContactUs();
+
+        contactPage.clickAddress();
+        contactPage.goToContactUs();
+
+        contactPage.clickCallUs();
+        contactPage.goToContactUs();
+
+        contactPage.clickFax();
+        contactPage.goToContactUs();
+
+        contactPage.clickEmailUs();
+
+        // Simple verification (page source check or final confirmation msg)
+        String pageSource = DriverFactory.getDriver().getPageSource().toLowerCase();
+        Assert.assertTrue(pageSource.contains("contact"), "Contact Us page should be loaded");
+
+        System.out.println("✅ Verified: All Contact Us options (Address, Call Us, Fax, Email Us) clicked successfully!");
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        DriverFactory.quitDriver();
+    }
+}

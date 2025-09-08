@@ -1,0 +1,43 @@
+package com.healthcare.tests;
+
+import com.healthcare.pages.HomePage;
+import com.healthcare.utils.ConfigReader;
+import com.healthcare.utils.DriverFactory;
+import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
+import org.testng.annotations.*;
+
+public class HomeTests {
+    private WebDriver driver;
+    private HomePage home;
+
+    @Parameters("browser")
+    @BeforeClass
+    public void setUp(@Optional("chrome") String browser) {
+        DriverFactory.initDriver(browser);
+        driver = DriverFactory.getDriver();
+        home = new HomePage();
+        home.open();
+    }
+
+    @Test(priority = 1)
+    public void verifyKeySectionsLoad() {
+        Assert.assertTrue(home.isNavVisible(), "Navigation not visible");
+        Assert.assertTrue(home.isProgramsVisible(), "Programs section missing");
+        Assert.assertTrue(home.isResourcesVisible(), "Resources section missing");
+    }
+
+    @Test(priority = 2)
+    public void verifySearchAndLinks() {
+        home.search("Nursing");
+        Assert.assertTrue(driver.getTitle().toLowerCase().contains("search") || driver.getPageSource().contains("Nursing"),
+            "Search did not show results");
+        // click a sample program link if present
+        // home.clickProgramLink("Nursing Program"); // enable if link exists
+    }
+
+    @AfterClass
+    public void tearDown() {
+        DriverFactory.quitDriver();
+    }
+}

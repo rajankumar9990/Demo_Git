@@ -1,0 +1,21 @@
+package com.healthcare.utils;
+
+import com.aventstack.extentreports.Status;
+import org.testng.*;
+
+public class TestListener implements ITestListener {
+    @Override
+    public void onTestSuccess(ITestResult result) {
+        ExtentManager.getInstance().createTest(result.getName()).log(Status.PASS, "Test Passed");
+    }
+
+    @Override
+    public void onTestFailure(ITestResult result) {
+        ExtentManager.getInstance().createTest(result.getName()).log(Status.FAIL, "Test Failed");
+    }
+
+    @Override
+    public void onFinish(ITestContext context) {
+        ExtentManager.getInstance().flush();
+    }
+}

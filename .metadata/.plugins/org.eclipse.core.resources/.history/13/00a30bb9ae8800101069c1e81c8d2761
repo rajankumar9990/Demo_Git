@@ -1,0 +1,87 @@
+package com.healthcare.stepdefinitions;
+
+import com.healthcare.pages.HealthyAgingFormPage;
+import com.healthcare.utils.ConfigReader;
+import com.healthcare.utils.DriverFactory;
+import io.cucumber.java.en.*;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
+
+public class HealthyAgingFormSteps {
+    private WebDriver driver;
+    private HealthyAgingFormPage formPage;
+
+    @Given("user is on Healthy Aging form page")
+    public void user_is_on_form_page() throws InterruptedException {
+        DriverFactory.initDriver();
+        driver = DriverFactory.getDriver();
+        driver.get(ConfigReader.getProperty("healthyAgingUrl"));
+        Thread.sleep(5000);
+        formPage = new HealthyAgingFormPage();
+    }
+
+    @When("user enters first name {string} and last name {string}")
+    public void user_enters_name(String first, String last) throws InterruptedException {
+        formPage.enterName(first, last);
+    }
+
+    @When("user enters phone {string} and email {string}")
+    public void user_enters_contact(String phone, String email) throws InterruptedException {
+        formPage.enterContact(phone, email);
+    }
+
+    @When("user selects programs")
+    public void user_selects_programs() throws InterruptedException {
+        formPage.selectPrograms();
+    }
+
+    @When("user selects county")
+    public void user_selects_county() throws InterruptedException {
+        formPage.selectCounty();
+    }
+
+    @When("user selects class format")
+    public void user_selects_class_format() throws InterruptedException {
+        formPage.selectClassFormat();
+    }
+
+    @When("user selects description {string}")
+    public void user_selects_description(String optionText) throws InterruptedException {
+        formPage.selectDescription(optionText);
+    }
+
+    @When("user enters how heard {string}")
+    public void user_enters_how_heard(String info) throws InterruptedException {
+        formPage.enterHowHeard(info);
+    }
+
+    @When("user checks notify option")
+    public void user_checks_notify_option() throws InterruptedException {
+        formPage.checkNotify();
+    }
+
+    @When("user submits the form")
+    public void user_submits_the_form() throws InterruptedException {
+        formPage.submitForm();
+    }
+
+    @Then("form should be submitted successfully")
+    public void form_should_be_submitted_successfully() throws InterruptedException {
+        By thankYou = By.xpath("//*[@id=\"post-500\"]/div/div[1]/div/div[1]/div/form/div/div/div[1]/div[1]/div/div[1]");
+        String actualMessage = driver.findElement(thankYou).getText();
+        Assert.assertTrue(
+            actualMessage.contains("Thank you for filling out the form. Your response has been recorded."),
+            "Form submission did not succeed!"
+        );
+        System.out.println("Healthy Aging form submitted successfully!");
+    }
+
+    @Then("user closes the browser")
+    public void user_closes_the_browser() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+}

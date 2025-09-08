@@ -1,0 +1,6 @@
+browser=chrome
+baseUrl=https://westfloridaahec.org/
+loginUrl=https://westfloridaahec.org/my-account/
+registerUrl=https://westfloridaahec.org/register
+username=rajan0990
+password=rajan@0990

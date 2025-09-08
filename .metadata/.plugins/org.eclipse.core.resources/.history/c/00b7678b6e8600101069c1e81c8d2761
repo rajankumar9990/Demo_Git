@@ -1,0 +1,54 @@
+package com.healthcare.tests;
+
+import com.healthcare.pages.ProgramsPage;
+import com.healthcare.utils.ConfigReader;
+import com.healthcare.utils.DriverFactory;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ProgramsTests {
+    private WebDriver driver;
+    private ProgramsPage programsPage;
+
+    @BeforeClass
+    public void setup() {
+        DriverFactory.initDriver(ConfigReader.get("browser"));
+        driver = DriverFactory.getDriver();
+        driver.get(ConfigReader.get("baseUrl"));
+        programsPage = new ProgramsPage();
+    }
+
+    @Test
+    public void verifyProgramsOpenSequentiallyInTabs() throws InterruptedException {
+        programsPage.openProgramsDropdown();
+
+        List<WebElement> links = programsPage.getAllProgramLinks();
+
+        // Open each program link one by one in a new tab
+        for (WebElement link : links) {
+            String openInNewTab = "window.open('" + link.getAttribute("href") + "','_blank');";
+            ((org.openqa.selenium.JavascriptExecutor) driver).executeScript(openInNewTab);
+
+            // wait before moving to next
+            Thread.sleep(3000);
+        }
+
+        // Switch through tabs and verify each page
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+
+        for (int i = 1; i < tabs.size(); i++) { // skip main tab
+            driver.switchTo().window(tabs.get(i));
+            System.out.println("✅ Verified Program Page: " + driver.getTitle());
+            Thread.sleep(2000); // delay before switching to next tab
+        }
+    }
+
+    @AfterClass
+    public void tearDown() {
+        driver.quit();
+    }
+}

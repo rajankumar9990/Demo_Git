@@ -1,0 +1,25 @@
+package com.healthcare.utils;
+
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class ExtentManager {
+    private static ExtentReports extent;
+
+    public synchronized static ExtentReports getInstance() {
+        if (extent == null) {
+            String path = ConfigReader.get("reportPath");
+            String ts = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+            ExtentSparkReporter spark = new ExtentSparkReporter(path + "ExtentReport_" + ts + ".html");
+            spark.config().setReportName("Healthcare Automation Report");
+            spark.config().setDocumentTitle("Automation Results");
+            extent = new ExtentReports();
+            extent.attachReporter(spark);
+            extent.setSystemInfo("OS", System.getProperty("os.name"));
+            extent.setSystemInfo("Environment", "QA");
+        }
+        return extent;
+    }
+}

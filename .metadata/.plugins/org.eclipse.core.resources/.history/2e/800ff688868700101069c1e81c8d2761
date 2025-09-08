@@ -1,0 +1,38 @@
+package com.healthcare.pages;
+
+import com.healthcare.utils.DriverFactory;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class LoginPage {
+    private WebDriver driver;
+
+    // Locators (adjust according to actual HTML)
+    private By usernameField = By.id("username");
+    private By passwordField = By.id("password");
+    private By loginButton = By.name("login");
+    private By logoutButton = By.id("logout"); // Example, update as per actual
+
+    public LoginPage() {
+        this.driver = DriverFactory.getDriver();
+    }
+
+    public void login(String username, String password) throws InterruptedException {
+        sleep(2000);
+        driver.findElement(usernameField).sendKeys(username);
+        sleep(2000);
+        driver.findElement(passwordField).sendKeys(password);
+        sleep(2000);
+        driver.findElement(loginButton).click();
+        sleep(2000);
+    }
+
+    public boolean isLogoutVisible() {
+        return driver.getPageSource().toLowerCase().contains("logout") ||
+               driver.findElements(logoutButton).size() > 0;
+    }
+
+    private void sleep(long millis) {
+        try { Thread.sleep(millis); } catch (InterruptedException e) {}
+    }
+}

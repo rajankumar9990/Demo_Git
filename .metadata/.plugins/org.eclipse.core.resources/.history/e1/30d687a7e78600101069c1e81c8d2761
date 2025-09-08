@@ -1,0 +1,43 @@
+package com.healthcare.pages;
+
+import com.healthcare.utils.DriverFactory;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
+
+public class LoginPage {
+    private WebDriver driver;
+    private WebDriverWait wait;
+
+    private By usernameField = By.id("username");
+    private By passwordField = By.id("password");
+    private By loginButton = By.xpath("//*[@id='customer_login']/div[1]/form/p[3]/button");
+    private By logoutLink = By.linkText("Logout");
+
+    // ✅ Constructor will fetch driver from DriverFactory
+    public LoginPage() {
+        this.driver = DriverFactory.getDriver();
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    }
+
+    public void login(String username, String password) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(usernameField)).sendKeys(username);
+        driver.findElement(passwordField).sendKeys(password);
+
+        WebElement loginBtn = wait.until(ExpectedConditions.elementToBeClickable(loginButton));
+        try {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", loginBtn);
+            loginBtn.click();
+        } catch (Exception e) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", loginBtn);
+        }
+    }
+
+    public boolean isLogoutVisible() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(logoutLink)).isDisplayed();
+    }
+}

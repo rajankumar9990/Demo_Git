@@ -1,0 +1,62 @@
+package com.healthcare.tests;
+
+import com.healthcare.pages.HomePage;
+import com.healthcare.utils.ConfigReader;
+import com.healthcare.utils.DriverFactory;
+import org.testng.Assert;
+import org.testng.annotations.*;
+
+public class HomeTests {
+    private HomePage home;
+
+    @BeforeClass
+    public void beforeClass() {
+        // Load config once before any test runs
+        ConfigReader.loadConfig();
+    }
+
+    @BeforeMethod
+    public void setup() {
+        // Initialize browser and go to base URL
+        DriverFactory.initDriver(ConfigReader.get("browser"));
+        DriverFactory.getDriver().get(ConfigReader.get("baseUrl"));
+        home = new HomePage();
+    }
+
+    @Test
+    public void verifySearchAndMenus() throws Exception {
+        // 🔹 Step 1: Verify search
+        home.search("tobacco");
+        Thread.sleep(1000);
+
+        String pageSource = DriverFactory.getDriver().getPageSource().toLowerCase();
+        Assert.assertTrue(
+                pageSource.contains("tobacco"),
+                "❌ Search results should contain the word 'tobacco'"
+        );
+        System.out.println("✅ Search is working fine for keyword: tobacco");
+
+        // 🔹 Step 2: Verify Programs menu works
+        home.goToPrograms();
+        Thread.sleep(1000);
+        Assert.assertTrue(
+                DriverFactory.getDriver().getTitle().toLowerCase().contains("programs"),
+                "❌ Programs page did not load properly"
+        );
+        System.out.println("✅ Programs menu is loading properly");
+
+        // 🔹 Step 3: Verify Services menu works
+        home.goToServices();
+        Thread.sleep(1000);
+        Assert.assertTrue(
+                DriverFactory.getDriver().getTitle().toLowerCase().contains("services"),
+                "❌ Services page did not load properly"
+        );
+        System.out.println("✅ Services menu is loading properly");
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        DriverFactory.quitDriver();
+    }
+}

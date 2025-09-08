@@ -1,0 +1,23 @@
+package com.healthcare.pages;
+
+import org.openqa.selenium.By;
+
+public class HomePage extends BasePage {
+    private By searchBar = By.name("s");
+    private By programsLink = By.xpath("//a[contains(@aria-haspopup,'true')]//span[contains(@class,'menu-text')][normalize-space()='PROGRAMS']");
+    private By servicesLink = By.xpath("//a[contains(@aria-haspopup,'true')]//span[contains(@class,'menu-text')][normalize-space()='SERVICES']");
+
+    public void search(String query) {
+        type(searchBar, query);
+       // click(searchBar);
+        driver.findElement(By.cssSelector("body > div:nth-child(9) > div:nth-child(1) > header:nth-child(2) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > form:nth-child(1) > div:nth-child(1) > div:nth-child(2) > input:nth-child(1)"));
+    }
+
+    public void goToPrograms() {
+        click(programsLink);
+    }
+
+    public void goToServices() {
+        click(servicesLink);
+    }
+}

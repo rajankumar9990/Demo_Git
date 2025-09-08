@@ -1,0 +1,69 @@
+package com.healthcare.tests;
+
+import com.healthcare.pages.ProgramsPage;
+import com.healthcare.utils.ConfigReader;
+import com.healthcare.utils.DriverFactory;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WindowType;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.Test;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class ProgramsTests {
+    private WebDriver driver;
+    private ProgramsPage programsPage;
+
+    @BeforeClass
+    public void setup() {
+        // Initialize browser and navigate to base URL
+        DriverFactory.initDriver(ConfigReader.get("browser"));
+        driver = DriverFactory.getDriver();
+        driver.get(ConfigReader.get("baseUrl"));
+        programsPage = new ProgramsPage();
+    }
+
+    @Test
+    public void verifyAllProgramsSequentially() {
+        // List of Programs menu items to check
+        List<String> programs = Arrays.asList(
+                "Tobacco",
+                "AHEC Scholars",
+                "Healthy Aging",
+                "Covering Florida"
+        );
+
+        String mainWindow = driver.getWindowHandle();
+
+        for (String program : programs) {
+            // open a new tab
+            driver.switchTo().newWindow(WindowType.TAB);
+            driver.get(ConfigReader.get("baseUrl"));
+
+            // Re-initialize page object for new tab
+            programsPage = new ProgramsPage();
+
+            // navigate to program
+            programsPage.hoverOverProgramsMenu();
+            programsPage.clickMenuItem(program);
+
+            // print heading
+            System.out.println(program + " heading: " + programsPage.getPageHeading());
+
+            // close the current tab
+            driver.close();
+
+            // switch back to main tab
+            driver.switchTo().window(mainWindow);
+        }
+    }
+
+    @AfterClass
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+}

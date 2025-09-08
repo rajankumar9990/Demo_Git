@@ -1,0 +1,62 @@
+package com.healthcare.tests;
+
+import com.healthcare.pages.HealthyAgingFormPage;
+import com.healthcare.utils.ConfigReader;
+import com.healthcare.utils.DriverFactory;
+import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
+import org.testng.annotations.*;
+
+public class HealthyAgingFormTests {
+    private WebDriver driver;
+    private HealthyAgingFormPage formPage;
+
+    @BeforeClass
+    public void beforeClass() {
+        // Load config file once
+        ConfigReader.loadConfig();
+    }
+
+    @BeforeMethod
+    public void setUp() throws Exception{
+        // Initialize browser
+        DriverFactory.initDriver(ConfigReader.get("browser"));
+        driver = DriverFactory.getDriver();
+
+        // Navigate using config value
+        driver.get(ConfigReader.get("healthyAgingUrl"));
+        Thread.sleep(10000);
+        formPage = new HealthyAgingFormPage();
+    }
+
+    @Test
+    public void testFormSubmission() throws Exception {
+        formPage.enterName("John", "Doe");
+        formPage.enterContact("1234567890", "john.doe@example.com");
+        formPage.selectPrograms();
+        formPage.selectCounty();
+        formPage.selectClassFormat();
+        formPage.selectDescription("Student");
+        formPage.enterHowHeard("Through a friend");
+        formPage.checkNotify();
+        formPage.submitForm();
+
+        // Wait briefly after submission
+        Thread.sleep(2000);
+
+        // Verify thank you message in response
+        Assert.assertTrue(
+                driver.getPageSource().toLowerCase().contains("thank you"),
+                "Form submission did not succeed!"
+        );
+
+        System.out.println(" Healthy Aging form submitted successfully!");
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+}

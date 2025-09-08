@@ -1,0 +1,22 @@
+package com.healthcare.pages;
+
+import org.openqa.selenium.By;
+
+public class HomePage extends BasePage {
+    private By searchBar = By.name("s");
+    private By programsLink = By.linkText("Programs");
+    private By servicesLink = By.linkText("Services");
+
+    public void search(String query) {
+        type(searchBar, query);
+        click(searchBar);
+    }
+
+    public void goToPrograms() {
+        click(programsLink);
+    }
+
+    public void goToServices() {
+        click(servicesLink);
+    }
+}

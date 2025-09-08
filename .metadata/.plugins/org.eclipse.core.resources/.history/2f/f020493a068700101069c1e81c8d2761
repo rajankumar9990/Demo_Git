@@ -1,0 +1,73 @@
+package com.healthcare.tests;
+
+import com.healthcare.pages.HomePage;
+import com.healthcare.utils.ConfigReader;
+import com.healthcare.utils.DriverFactory;
+import org.testng.Assert;
+import org.testng.annotations.*;
+
+public class HomeTests {
+	private HomePage home;
+
+	@BeforeClass
+	public void beforeClass() {
+		ConfigReader.loadConfig(); // load config once
+	}
+
+	@BeforeMethod
+	public void setup() {
+		DriverFactory.initDriver(ConfigReader.get("browser"));
+		DriverFactory.getDriver().get(ConfigReader.get("baseUrl"));
+		home = new HomePage();
+	}
+
+	@Test
+	public void verifySearchProgramsAndServices() throws Exception {
+		// Search
+		home.search("tobacco");
+		Thread.sleep(1000);
+		Assert.assertTrue(DriverFactory.getDriver().getPageSource().toLowerCase().contains("tobacco"),
+				"Search results should contain 'tobacco'");
+		System.out.println("Search working");
+		// About
+		home.goToAbout();
+		Thread.sleep(2000);
+		// Programs
+		home.goToPrograms();
+		Thread.sleep(2000);
+		System.out.println("Programs menu working");
+		// Services
+		home.goToServices();
+		Thread.sleep(2000);
+		System.out.println("Services menu working");
+		// CPR
+		home.goToCPR();
+		System.out.println("CPR menu working");
+		Thread.sleep(2000);
+		// Contact Us
+		home.goToContactUs();
+		System.out.print("Contact Us menu working");
+		// News
+		home.goToNews();
+		System.out.println("News menu working");
+		Thread.sleep(2000);
+		// My Account
+		home.goToMyAccount();
+		System.out.println("My Account menu working");
+		Thread.sleep(2000);
+		// View Cart
+		home.goToCart();
+		System.out.println("Cart menu working");
+		Thread.sleep(2000);
+		// Home
+		home.goToHome();
+		System.out.println("Home menu working");
+		Thread.sleep(2000);
+	}
+
+	@AfterMethod
+	public void tearDown () throws Exception {
+		Thread.sleep(2000);
+		DriverFactory.quitDriver();
+	}
+}

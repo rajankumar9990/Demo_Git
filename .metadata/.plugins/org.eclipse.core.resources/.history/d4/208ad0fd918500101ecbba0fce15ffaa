@@ -1,0 +1,30 @@
+package com.healthcare.tests;
+
+import com.healthcare.pages.ProgramsPage;
+import com.healthcare.utils.ConfigReader;
+import com.healthcare.utils.DriverFactory;
+import org.testng.Assert;
+import org.testng.annotations.*;
+
+public class ProgramsTests {
+    ProgramsPage programPage;
+
+    @BeforeMethod
+    public void setup() {
+        DriverFactory.initDriver(ConfigReader.get("browser"));
+        DriverFactory.getDriver().get(ConfigReader.get("baseUrl"));
+        programPage = new ProgramsPage();
+    }
+
+    @Test
+    public void verifyProgramPageNavigation() {
+        programPage.goToPrograms();
+        Assert.assertTrue(programPage.isAtProgramsPage(),
+                "Programs page did not load correctly!");
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        DriverFactory.quitDriver();
+    }
+}

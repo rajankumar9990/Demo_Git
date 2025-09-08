@@ -1,0 +1,44 @@
+package com.healthcare.tests;
+
+import com.healthcare.pages.LoginPage;
+import com.healthcare.utils.ConfigReader;
+import com.healthcare.utils.DriverFactory;
+import org.testng.Assert;
+import org.testng.annotations.*;
+
+public class LoginTests {
+    private LoginPage loginPage;
+
+    @BeforeClass
+    public void beforeClass() {
+        ConfigReader.loadConfig();
+    }
+
+    @BeforeMethod
+    public void setup() {
+        DriverFactory.initDriver(ConfigReader.get("browser"));
+        DriverFactory.getDriver().get(ConfigReader.get("loginUrl"));
+        loginPage = new LoginPage();
+
+        // Print page title
+        String pageTitle = DriverFactory.getDriver().getTitle();
+        System.out.println("Page title : " + pageTitle);
+    }
+
+    @Test
+    public void verifyLogin() throws Exception {
+        String username = ConfigReader.get("username");
+        String password = ConfigReader.get("password");
+
+        loginPage.login(username, password);
+
+        Assert.assertTrue(loginPage.isLogoutVisible(), "Login should be successful");
+        System.out.println("Login successful!");
+    }
+
+    @AfterMethod
+    public void tearDown() throws Exception {
+        Thread.sleep(3000);
+        DriverFactory.quitDriver();
+    }
+}

@@ -1,0 +1,36 @@
+package com.healthcare.pages;
+
+import com.healthcare.utils.DriverFactory;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+public class ProgramsPage {
+    private WebDriver driver;
+
+    private By programMenu = By.xpath("//*[@id='menu-item-264']/a/span[1]");
+    private By pageHeading = By.tagName("h1");
+
+    public ProgramsPage() {
+        this.driver = DriverFactory.getDriver();
+    }
+
+    public void hoverOverProgramsMenu() {
+        WebElement menu = driver.findElement(programMenu);
+        String script = "var evObj = document.createEvent('MouseEvents');" +
+                "evObj.initMouseEvent('mouseover', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);" +
+                "arguments[0].dispatchEvent(evObj);";
+        ((org.openqa.selenium.JavascriptExecutor) driver).executeScript(script, menu);
+        try { Thread.sleep(1000); } catch (InterruptedException e) {}
+    }
+
+    public void clickMenuItem(String menuText) {
+        WebElement item = driver.findElement(By.xpath("//*[text()='" + menuText + "']"));
+        item.click();
+        try { Thread.sleep(2000); } catch (InterruptedException e) {}
+    }
+
+    public String getPageHeading() {
+        return driver.findElement(pageHeading).getText();
+    }
+}
